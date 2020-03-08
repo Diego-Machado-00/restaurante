@@ -1,20 +1,20 @@
 <?php
-require 'persistencia/ClienteDAO.php';
+require 'persistencia/RecepcionistaDAO.php';
 require_once 'persistencia/Conexion.php';
 
-class Cliente extends Persona {
-    private $clienteDAO;
+class Recepcionista extends Persona {
+    private $recepcionistaDAO;
     private $conexion;
     
-    function Cliente($id="", $nombre="", $apellido="", $correo="", $clave=""){
+    function Recepcionista($id="", $nombre="", $apellido="", $correo="", $clave=""){
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
         $this -> conexion = new Conexion();
-        $this -> clienteDAO = new ClienteDAO($id, $nombre, $apellido, $correo, $clave);
+        $this -> recepcionistaDAO = new RecepcionistaDAO($id, $nombre, $apellido, $correo, $clave);
     }
     
     function autenticar(){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> clienteDAO -> autenticar());
+        $this -> conexion -> ejecutar($this -> recepcionistaDAO -> autenticar());
         if($this -> conexion -> numFilas() == 1){
             $resultado = $this -> conexion -> extraer();
             $this -> id = $resultado[0];
@@ -28,7 +28,7 @@ class Cliente extends Persona {
     
     function consultar(){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> clienteDAO -> consultar());
+        $this -> conexion -> ejecutar($this -> recepcionistaDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
         $this -> id = $resultado[0];
         $this -> nombre = $resultado[1];
