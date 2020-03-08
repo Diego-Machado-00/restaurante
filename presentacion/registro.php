@@ -13,7 +13,7 @@ if(isset($_POST["registrar"])){
     $apellido = $_POST["apellido"];
     $correo = $_POST["correo"];
     $clave = $_POST["clave"];
-    $cedula = $_POST["cedula"]; 
+
     
     $cliente = new Cliente("", $nombre, $apellido, $correo, $clave, $cedula, 0,"","");
     if(!$cliente -> existeCorreo()){

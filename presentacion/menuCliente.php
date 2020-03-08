@@ -1,6 +1,7 @@
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand"
-		href="index.php?pid=<?php echo base64_encode("presentacion/sesionChef.php")?>"><i
+		href="index.php?pid=<?php echo base64_encode("presentacion/sesionCliente.php")?>"><i
 		class="fas fa-home"></i></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
@@ -22,7 +23,7 @@
 			</li>
 		</ul>
 		<span class="navbar-text">
-     Chef: <?php echo $chef -> getNombre() . " " . $chef -> getApellido() ?> 
+      Cliente: <?php echo $cliente -> getNombre() . " " . $cliente -> getApellido() ?> 
     </span>
 	</div>
 </nav>

@@ -8,6 +8,7 @@ class ClienteDAO{
         $this -> apellido = $apellido;
         $this -> correo = $correo;
         $this -> clave = $clave;
+        
     }
     function autenticar(){
         return "select idcliente from cliente

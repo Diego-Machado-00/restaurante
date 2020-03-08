@@ -2,6 +2,8 @@
 class Recepcionista extends Persona{
     function Recepcionista($id,$nombre,$apellido,$correo,$clave){
         $this -> Persona($id,$nombre,$apellido,$correo,$clave);
+        $this -> conexion = new Conexion();
+        $this -> clienteDAO = new ClienteDAO($id, $nombre, $apellido, $correo, $clave);  
     }
     function autenticar(){
         $this -> conexion -> abrir();

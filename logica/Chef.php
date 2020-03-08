@@ -4,6 +4,8 @@ class Chef extends Persona{
     function Chef($id="",$nombre="",$apellido="",$correo="",$clave="",$tarjetaprofesional=""){
         $this -> tarjetaprofesional = $tarjetaprofesional;
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
+        $this -> conexion = new Conexion();
+        $this -> clienteDAO = new ClienteDAO($id, $nombre, $apellido, $correo, $clave);  
     }
     
     function autenticar(){
