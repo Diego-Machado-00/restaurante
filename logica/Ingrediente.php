@@ -8,6 +8,14 @@ class Ingrediente{
     private $ingredienteDAO;
     private $conexion;
     
+    function getIdingrediente(){
+        return $this -> idingrediente;
+    }
+    
+    function getNombre(){
+        return $this -> nombre;
+    }
+    
     function Ingrediente($idingrediente="", $nombre=""){
         $this -> idcategoria = $idingrediente;
         $this -> nombre = $nombre;

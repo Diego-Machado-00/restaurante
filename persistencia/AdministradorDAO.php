@@ -15,12 +15,14 @@ class AdministradorDAO {
     }
     
     function autenticar(){
-        return "select idadministrador from administrador
+        return "select idadministrador  
+                from administrador
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
 
     function consultar(){
-        return "select idadministrador, nombre, apellido, correo from administrador
+        return "select idadministrador, nombre, apellido, correo 
+                from administrador
                 where idadministrador = '" . $this -> id . "'";
     }
     

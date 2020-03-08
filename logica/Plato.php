@@ -11,6 +11,23 @@ class Plato{
     private $platoDAO;
     private $conexion;
     
+    function getIdplato(){
+        return $this -> idplato;
+    }
+    
+    function getNombre(){
+        return $this -> nombre;
+    }
+    function getPrecio(){
+        return $this -> precio;
+    }
+    
+    function getChef(){
+        return $this -> chef_idchef;
+    }
+    function getCategoria(){
+        return $this -> categoria_idcategoria;
+    }
     function Plato($idplato="", $nombre="", $precio="", $chef_idchef="", $categoria_idcategoria=""){
         $this -> idplato = $idplato;
         $this -> nombre = $nombre;

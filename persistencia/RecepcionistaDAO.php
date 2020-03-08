@@ -1,40 +1,44 @@
 <?php
-require 'persistencia/RecepcionistaDAO.php';
-require_once 'persistencia/Conexion.php';
-
-class Recepcionista extends Persona {
-    private $recepcionistaDAO;
-    private $conexion;
+class RecepcionistaDAO {
+    private $idrecepcionista;
+    private $nombre;
+    private $apellido;
+    private $correo;
+    private $clave;
     
-    function Recepcionista($id="", $nombre="", $apellido="", $correo="", $clave=""){
-        $this -> Persona($id, $nombre, $apellido, $correo, $clave);
-        $this -> conexion = new Conexion();
-        $this -> recepcionistaDAO = new RecepcionistaDAO($id, $nombre, $apellido, $correo, $clave);
+    function RecepcionistaDAO($idrecepcionista = "", $nombre = "", $apellido = "", $correo = "", $clave = ""){
+        $this->idrecepcionista = $idrecepcionista;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->correo = $correo;
+        $this->clave = $clave;
     }
     
     function autenticar(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> recepcionistaDAO -> autenticar());
-        if($this -> conexion -> numFilas() == 1){
-            $resultado = $this -> conexion -> extraer();
-            $this -> id = $resultado[0];
-            $this -> conexion -> cerrar();
-            return true;
-        } else {
-            $this -> conexion -> cerrar();
-            return false;
-        }
+        return "select idrecepcionista from recepcionista
+                where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
-    function consultar(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> recepcionistaDAO -> consultar());
-        $resultado = $this -> conexion -> extraer();
-        $this -> id = $resultado[0];
-        $this -> nombre = $resultado[1];
-        $this -> apellido = $resultado[2];
-        $this -> correo = $resultado[3];
-        $this -> conexion -> cerrar();
+    function registrar(){
+        return "insert into recepcionista
+                (nombre, apellido, correo, clave)
+                values ('" . $this->nombre . "', '" . $this->apellido . "', '" . $this->correo . "', md5('" . $this->clave . "'))";
     }
     
+    function consultar() {
+        return "select nombre, apellido, correo
+                from recepcionista
+                where idrecepcionista =" . $this -> idrecepcionista;
+    }
+    
+    function existeCorreo(){
+        return "select idrecepcionista from recepcionista
+                where correo = '" . $this->correo . "'";
+    }
+    
+    function consultarTodos(){
+        return "select idrecepcionista,nombre, apellido, correo
+                from recepcionista
+                order by apellido";
+    }
 }

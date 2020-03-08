@@ -8,7 +8,15 @@ class Pedido_Plato{
     private $Pedido_PlatoDAO;
     private $conexion;
     
-    function Plato_Ingrediente($pedido_idpedido="", $plato_idplato=""){
+    function getPedido(){
+        return $this -> pedido_idpedido;
+    }
+    
+    function getPlato(){
+        return $this -> plato_idplato;
+    }
+    
+    function Pedido_Plato($pedido_idpedido="", $plato_idplato=""){
         $this -> pedido_idpedido = $pedido_idpedido;
         $this -> plato_idplato = $plato_idplato;
         $this -> conexion = new Conexion();

@@ -13,7 +13,36 @@ class Reserva {
     private $reservaDAO;
     private $conexion;
     
-    function Administrador($idreserva="", $hora="", $fecha="", $cliente_idcliente="", $mesa_idmesa="", $recepcionista_idrecepcionista="" ){
+    function getIdreserva(){
+        return $this -> idreserva;
+    }
+    
+    function getHora(){
+        return $this -> hora;
+    }
+    
+    function getFecha(){
+        return $this -> fecha;
+    }
+    
+    function getCliente(){
+        return $this -> cliente_idcliente;
+    }
+    
+    function getMesa(){
+        return $this -> mesa_idmesa;
+    }
+    
+    function getRecepcionista(){
+        return $this -> recepcionista_idrecepcionista;
+    }
+    
+    function getEstado(){
+        return $this -> estado;
+    }
+    
+    
+    function Administrador($idreserva="", $hora="", $fecha="", $cliente_idcliente="", $mesa_idmesa="", $recepcionista_idrecepcionista="" , $estado="" ){
         $this -> idreserva = $idreserva;
         $this -> hora = $hora;
         $this -> fecha = $fecha;
@@ -21,7 +50,7 @@ class Reserva {
         $this -> recepcionista_idrecepcionista = $recepcionista_idrecepcionista;
         $this -> estado = $estado;
         $this -> conexion = new Conexion();
-        $this -> reservaDAO = new ReservaDAO($idreserva, $hora, $fecha, $cliente_idcliente, $mesa_idmesa, $recepcionista_idrecepcionista);
+        $this -> reservaDAO = new ReservaDAO($idreserva, $hora, $fecha, $cliente_idcliente, $mesa_idmesa, $recepcionista_idrecepcionista, $estado);
     }
     
     function consultar(){

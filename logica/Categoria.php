@@ -8,6 +8,14 @@ class Categoria{
     private $categoriaDAO;
     private $conexion;
     
+    function getIdcategoria(){
+        return $this -> idcategoria;
+    }
+    
+    function getNombre(){
+        return $this -> nombre;
+    }
+    
     function Categoria($idcategoria="", $nombre=""){
         $this -> idcategoria = $idcategoria;
         $this -> nombre = $nombre;

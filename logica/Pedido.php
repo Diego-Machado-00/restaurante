@@ -10,6 +10,22 @@ class Pedido {
     private $pedidoDAO;
     private $conexion;
     
+    function getIdPedido(){
+        return $this -> idpedido;
+    }
+    
+    function getDescripcion(){
+        return $this -> descripcion;
+    }
+    
+    function getReserva(){
+        return $this -> reserva_idreserva;
+    }
+    
+    function getCantidad(){
+        return $this -> cantidad;
+    }
+    
     function Pedido($idpedido="", $descripcion="", $reserva_idreserva="", $cantidad=""){
         $this -> idpedido = $idpedido;
         $this -> descripcion = $descripcion;

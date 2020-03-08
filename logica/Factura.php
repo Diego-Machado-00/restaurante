@@ -9,6 +9,19 @@ class Factura {
     private $facturaDAO;
     private $conexion;
     
+    function getIdfactura(){
+        return $this -> idfactura;
+    }
+    
+    function getmontoFinal(){
+        return $this -> montoFinal;
+    }
+    
+    function getPedido(){
+        return $this -> pedido_idpedido;
+    }
+    
+    
     function Factura($idfactura="", $montoFinal="", $pedido_idpedido=""){
         $this -> idfactura = $idfactura;
         $this -> montoFinal = $montoFinal;

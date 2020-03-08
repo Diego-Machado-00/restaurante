@@ -9,6 +9,18 @@ class Mesa{
     private $mesaDAO;
     private $conexion;
     
+    function getIdmesa(){
+        return $this -> idmesa;
+    }
+    
+    function getNombre(){
+        return $this -> nombre;
+    }
+    
+    function getNpersonas(){
+        return $this -> numero_personas;
+    }
+    
     function Mesa($idmesa="", $nombre="", $numero_personas=""){
         $this -> idmesa = $idmesa;
         $this -> nombre = $nombre;
@@ -23,7 +35,7 @@ class Mesa{
         $resultado = $this -> conexion -> extraer();
         $this -> idmesa = $resultado[0];
         $this -> nombre = $resultado[1];
-        $this -> numero_personas = $resultado[1];
+        $this -> numero_personas = $resultado[2];
         $this -> conexion -> cerrar();
     }
     
