@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 class RecepcionistaDAO {
     private $idrecepcionista;
     private $nombre;
@@ -14,11 +15,23 @@ class RecepcionistaDAO {
         $this->clave = $clave;
     }
     
+=======
+class RecepcionistaDAO{
+    private $id,$nombre,$apellido,$correo,$clave;
+    function Recepcionista($id="",$nombre="",$apellido="",$correo="",$clave=""){
+        $this -> id= $id;
+        $this -> nombre = $nombre;
+        $this -> apellido = $apellido;
+        $this -> correo = $correo;
+        $this -> clave = $clave;
+    }
+>>>>>>> carpetalogica
     function autenticar(){
         return "select idrecepcionista from recepcionista
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
+<<<<<<< HEAD
     function registrar(){
         return "insert into recepcionista
                 (nombre, apellido, correo, clave)
@@ -42,3 +55,10 @@ class RecepcionistaDAO {
                 order by apellido";
     }
 }
+=======
+    function consultar(){
+        return "select idrecepcionista, nombre, apellido, correo, tarjetaprofesional from recepcionista
+                where idrecepcionista = '" . $this -> id . "'";
+    }
+}?>
+>>>>>>> carpetalogica

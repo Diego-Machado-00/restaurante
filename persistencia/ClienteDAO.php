@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 class ClienteDAO {
     private $idcliente;
     private $nombre;
@@ -16,11 +17,24 @@ class ClienteDAO {
         $this->cedula = $cedula;
     }
     
+=======
+class ClienteDAO{
+    private $id="", $nombre="", $apellido="", $correo="", $clave="";
+  
+    function ClienteDAO($id="", $nombre="", $apellido="", $correo="", $clave=""){
+        $this -> id =$id;
+        $this -> nombre = $nombre;
+        $this -> apellido = $apellido;
+        $this -> correo = $correo;
+        $this -> clave = $clave;
+    }
+>>>>>>> carpetalogica
     function autenticar(){
         return "select idcliente from cliente
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
+<<<<<<< HEAD
     function existeCorreo(){
         return "select idcliente from cliente, recepcionista, chef
                 where cliente.correo = '" . $this->correo . "' or 
@@ -46,3 +60,11 @@ class ClienteDAO {
                 order by apellido";
     }
 }
+=======
+    function consultar(){
+        return "select idcliente, nombre, apellido, correo from cliente
+                where idchef = '" . $this -> id . "'";
+    }
+}
+?>
+>>>>>>> carpetalogica

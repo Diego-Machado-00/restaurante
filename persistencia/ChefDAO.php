@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 class ChefDAO {
     private $idchef;
     private $nombre;
@@ -15,11 +16,26 @@ class ChefDAO {
         $this->clave = $clave;
         $this->tarjetaprofesional = $tarjetaprofesional;
     }
+=======
+class ChefDAO{
+    private $id="",$nombre="",$apellido="",$correo="",$clave="",$tarjetaprofesional="";
+
+    function ChefDAO($id="",$nombre="",$apellido="",$correo="",$clave="",$tarjetaprofesional=""){
+        $this -> id = $id;
+        $this -> nombre = $nombre;
+        $this -> apellido = $apellido;
+        $this -> correo = $correo;
+        $this -> clave = $clave;
+        $this -> tarjetaprofesional = $tarjetaprofesional;
+    }
+    
+>>>>>>> carpetalogica
     function autenticar(){
         return "select idchef from chef
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
+<<<<<<< HEAD
     function registrar(){
         return "insert into chef
                 (nombre, apellido, correo, clave, tarjetaprofesional)
@@ -41,5 +57,10 @@ class ChefDAO {
         return "select idchef,nombre, apellido, correo, tarjetaprofesional
                 from chef
                 order by apellido";
+=======
+    function consultar(){
+        return "select idchef, nombre, apellido, correo, tarjetaprofesional from chef
+                where idchef = '" . $this -> id . "'";
+>>>>>>> carpetalogica
     }
 }

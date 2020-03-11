@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require 'persistencia/ClienteDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -27,6 +28,15 @@ class Cliente extends Persona {
     function autenticar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> autenticar());
+=======
+class Cliente extends Persona{
+    function Cliente($id="", $nombre="", $apellido="", $correo="", $clave=""){
+        $this -> Persona($id, $nombre, $apellido, $correo, $clave);
+    }
+    function autenticar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> administradorDAO -> autenticar());
+>>>>>>> carpetalogica
         if($this -> conexion -> numFilas() == 1){
             $resultado = $this -> conexion -> extraer();
             $this -> id = $resultado[0];
@@ -40,12 +50,17 @@ class Cliente extends Persona {
     
     function consultar(){
         $this -> conexion -> abrir();
+<<<<<<< HEAD
         $this -> conexion -> ejecutar($this -> clienteDAO -> consultar());
+=======
+        $this -> conexion -> ejecutar($this -> administradorDAO -> consultar());
+>>>>>>> carpetalogica
         $resultado = $this -> conexion -> extraer();
         $this -> id = $resultado[0];
         $this -> nombre = $resultado[1];
         $this -> apellido = $resultado[2];
         $this -> correo = $resultado[3];
+<<<<<<< HEAD
         $this -> estado = $resultado[4];
         $this -> cedula = $resultado[5];
         $this -> conexion -> cerrar();
@@ -83,3 +98,9 @@ class Cliente extends Persona {
     }
     
 }
+=======
+        $this -> conexion -> cerrar();
+    }
+}
+?>
+>>>>>>> carpetalogica

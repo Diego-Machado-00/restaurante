@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require 'persistencia/ChefDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -16,6 +17,13 @@ class Chef extends Persona {
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
         $this -> conexion = new Conexion();
         $this -> chefDAO = new ChefDAO($idchef, $nombre, $apellido, $correo, $clave, $tarjetaprofesional);
+=======
+class Chef extends Persona{
+    private $tarjetaprofesional;
+    function Chef($id="",$nombre="",$apellido="",$correo="",$clave="",$tarjetaprofesional=""){
+        $this -> tarjetaprofesional = $tarjetaprofesional;
+        $this -> Persona($id, $nombre, $apellido, $correo, $clave);
+>>>>>>> carpetalogica
     }
     
     function autenticar(){
@@ -36,6 +44,7 @@ class Chef extends Persona {
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> chefDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
+<<<<<<< HEAD
         $this -> idchef = $resultado[0];
         $this -> nombre = $resultado[1];
         $this -> apellido = $resultado[2];
@@ -76,3 +85,20 @@ class Chef extends Persona {
     }
     
 }
+=======
+        $this -> id = $resultado[0];
+        $this -> nombre = $resultado[1];
+        $this -> apellido = $resultado[2];
+        $this -> correo = $resultado[3];
+        $this -> conexion -> cerrar();
+    }
+    function getTarjeta(){
+       return $this -> tarjetaprofesional;
+       
+    } function setTarjeta($tarjetaprofesional){
+        $this -> tarjetaprofesional=$tarjetaprofesional;
+        
+    }
+}
+?>
+>>>>>>> carpetalogica
