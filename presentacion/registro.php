@@ -1,6 +1,5 @@
 <?php 
-// require 'logica/Persona.php';
-// require 'logica/Paciente.php';
+
 $error = -1;
 $nombre = "";
 $apellido = "";

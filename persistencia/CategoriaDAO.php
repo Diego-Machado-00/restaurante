@@ -1,5 +1,5 @@
 <?php
-<<<<<<< HEAD
+
 class CategoriaDAO {
     private $idcategoria;
     private $nombre;
@@ -16,15 +16,4 @@ class CategoriaDAO {
     }
     
 }
-=======
-class CategoriaDAO{
-    private $idcategoria,$nombre;
-    
-    function CategoriaDAO($idcategoria="",$nombre=""){
-        $this -> idcategoria = $idcategoria;
-        $this -> nombre = $nombre;
-    }
-  
-    
-}
->>>>>>> carpetalogica
+

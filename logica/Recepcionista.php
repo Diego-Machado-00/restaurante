@@ -1,5 +1,5 @@
 <?php
-<<<<<<< HEAD
+
 require 'persistencia/RecepcionistaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -13,12 +13,7 @@ class Recepcionista extends Persona {
         $this -> recepcionistaDAO = new RecepcionistaDAO($id, $nombre, $apellido, $correo, $clave);
     }
     
-=======
-class Recepcionista extends Persona{
-    function Recepcionista($id,$nombre,$apellido,$correo,$clave){
-        $this -> Persona($id,$nombre,$apellido,$correo,$clave);
-    }
->>>>>>> carpetalogica
+
     function autenticar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> autenticar());
@@ -43,7 +38,6 @@ class Recepcionista extends Persona{
         $this -> correo = $resultado[3];
         $this -> conexion -> cerrar();
     }
-<<<<<<< HEAD
     
     function registrar(){
         $this -> conexion -> abrir();
@@ -78,6 +72,6 @@ class Recepcionista extends Persona{
     
 }
 
-=======
+
 }
->>>>>>> carpetalogica
+

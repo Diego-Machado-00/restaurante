@@ -1,5 +1,5 @@
 <?php
-<<<<<<< HEAD
+
 class MesaDAO {
     private $idmesa;
     private $nombre;
@@ -18,15 +18,4 @@ class MesaDAO {
                 where idmesa = '" . $this -> idmesa . "'";
     }
     
-=======
-class MesaDAO{
-    private $idmesa,$nombre,$numpersonas;
-    
-    function MesaDAO($idmesa="",$nombre="",$numpersonas=""){
-        $this -> idmesa = $idmesa;
-        $this -> nombre = $nombre;
-        $this ->numpersonas = $numpersonas;
-        
-    }
->>>>>>> carpetalogica
 }
