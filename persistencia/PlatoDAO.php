@@ -1,5 +1,6 @@
 <?php
 
+
 class PlatoDAO {
     private $idplato;
     private $nombre;
@@ -23,3 +24,6 @@ class PlatoDAO {
     }
     
 }
+
+?>
+

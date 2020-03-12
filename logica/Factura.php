@@ -1,4 +1,5 @@
 <?php
+
 require 'persistencia/FacturaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -22,6 +23,7 @@ class Factura {
     }
     
     
+    
     function Factura($idfactura="", $montoFinal="", $pedido_idpedido=""){
         $this -> idfactura = $idfactura;
         $this -> montoFinal = $montoFinal;
@@ -31,4 +33,5 @@ class Factura {
     }
     
     
+
 }

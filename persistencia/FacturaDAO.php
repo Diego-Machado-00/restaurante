@@ -1,5 +1,6 @@
 <?php
 
+
 class FacturaDAO {
     private $idfactura;
     private $montoFinal;
@@ -13,3 +14,6 @@ class FacturaDAO {
     
     
 }
+
+?>
+

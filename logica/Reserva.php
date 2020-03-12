@@ -1,4 +1,5 @@
 <?php
+
 require 'persistencia/ReservaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -12,6 +13,7 @@ class Reserva {
     private $estado;
     private $reservaDAO;
     private $conexion;
+    
     
     function getIdreserva(){
         return $this -> idreserva;
@@ -67,3 +69,5 @@ class Reserva {
     }
     
 }
+
+?>

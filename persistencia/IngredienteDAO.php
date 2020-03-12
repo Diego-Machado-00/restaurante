@@ -1,4 +1,5 @@
 <?php
+
 class IngredienteDAO {
     private $idingrediente;
     private $nombre;
@@ -16,3 +17,6 @@ class IngredienteDAO {
     }
     
 }
+
+?>
+

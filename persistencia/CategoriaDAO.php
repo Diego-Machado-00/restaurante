@@ -1,4 +1,5 @@
 <?php
+
 class CategoriaDAO {
     private $idcategoria;
     private $nombre;
@@ -15,3 +16,4 @@ class CategoriaDAO {
     }
     
 }
+

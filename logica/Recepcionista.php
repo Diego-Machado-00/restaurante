@@ -1,4 +1,5 @@
 <?php
+
 require 'persistencia/RecepcionistaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -12,6 +13,7 @@ class Recepcionista extends Persona {
         $this -> recepcionistaDAO = new RecepcionistaDAO($id, $nombre, $apellido, $correo, $clave);
     }
     
+
     function autenticar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> autenticar());
@@ -68,5 +70,8 @@ class Recepcionista extends Persona {
         return $resultados;
     }
     
+}
+
+
 }
 

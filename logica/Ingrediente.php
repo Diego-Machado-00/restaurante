@@ -16,6 +16,7 @@ class Ingrediente{
         return $this -> nombre;
     }
     
+    
     function Ingrediente($idingrediente="", $nombre=""){
         $this -> idcategoria = $idingrediente;
         $this -> nombre = $nombre;
@@ -33,3 +34,7 @@ class Ingrediente{
     }
     
 }
+
+
+?>
+

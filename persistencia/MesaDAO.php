@@ -1,4 +1,5 @@
 <?php
+
 class MesaDAO {
     private $idmesa;
     private $nombre;

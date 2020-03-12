@@ -28,6 +28,7 @@ class Plato{
     function getCategoria(){
         return $this -> categoria_idcategoria;
     }
+    
     function Plato($idplato="", $nombre="", $precio="", $chef_idchef="", $categoria_idcategoria=""){
         $this -> idplato = $idplato;
         $this -> nombre = $nombre;
@@ -49,5 +50,5 @@ class Plato{
         $this -> categoria_idcategoria = $resultado[4];
         $this -> conexion -> cerrar();
     }
-    
+
 }

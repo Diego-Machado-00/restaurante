@@ -1,4 +1,5 @@
 <?php
+
 require 'persistencia/MesaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -21,6 +22,7 @@ class Mesa{
         return $this -> numero_personas;
     }
     
+    
     function Mesa($idmesa="", $nombre="", $numero_personas=""){
         $this -> idmesa = $idmesa;
         $this -> nombre = $nombre;
@@ -37,6 +39,7 @@ class Mesa{
         $this -> nombre = $resultado[1];
         $this -> numero_personas = $resultado[2];
         $this -> conexion -> cerrar();
+        
     }
     
 }

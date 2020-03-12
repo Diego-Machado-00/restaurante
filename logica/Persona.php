@@ -5,7 +5,13 @@ class Persona {
     protected $apellido;
     protected $correo;
     protected $clave;
-    
+    function Persona ($id="", $nombre="", $apellido="", $correo="", $clave=""){
+        $this -> id = $id;
+        $this -> nombre = $nombre;
+        $this -> apellido = $apellido;
+        $this -> correo = $correo;
+        $this -> clave = $clave;
+    }    
     function getId(){
         return $this -> id;
     }
@@ -26,13 +32,7 @@ class Persona {
     }
     
     
-    function Persona ($id, $nombre, $apellido, $correo, $clave){
-        $this -> id = $id;
-        $this -> nombre = $nombre;
-        $this -> apellido = $apellido;
-        $this -> correo = $correo;
-        $this -> clave = $clave;        
-    }    
+
 }
 
 ?>

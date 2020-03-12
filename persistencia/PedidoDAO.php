@@ -1,4 +1,5 @@
 <?php
+
 class PedidoDAO {
     private $idpedido;
     private $descripcion;
@@ -20,3 +21,6 @@ class PedidoDAO {
     }
     
 }
+
+?>
+

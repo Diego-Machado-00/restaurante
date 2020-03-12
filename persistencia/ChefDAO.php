@@ -1,4 +1,5 @@
 <?php
+
 class ChefDAO {
     private $idchef;
     private $nombre;
@@ -15,6 +16,7 @@ class ChefDAO {
         $this->clave = $clave;
         $this->tarjetaprofesional = $tarjetaprofesional;
     }
+    
     function autenticar(){
         return "select idchef from chef
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
@@ -41,5 +43,6 @@ class ChefDAO {
         return "select idchef,nombre, apellido, correo, tarjetaprofesional
                 from chef
                 order by apellido";
+
     }
 }

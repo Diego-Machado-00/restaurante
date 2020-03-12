@@ -1,4 +1,5 @@
 <?php
+
 require 'persistencia/CategoriaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -15,6 +16,7 @@ class Categoria{
     function getNombre(){
         return $this -> nombre;
     }
+    
     
     function Categoria($idcategoria="", $nombre=""){
         $this -> idcategoria = $idcategoria;
@@ -33,3 +35,4 @@ class Categoria{
     }
     
 }
+

@@ -1,4 +1,5 @@
 <?php
+
 class ReservaDAO {
     private $idreserva;
     private $hora;
@@ -25,4 +26,7 @@ class ReservaDAO {
     
    
 }
+
+
+?>
 

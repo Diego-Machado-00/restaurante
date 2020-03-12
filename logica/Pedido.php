@@ -1,4 +1,5 @@
 <?php
+
 require 'persistencia/PedidoDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -26,6 +27,7 @@ class Pedido {
         return $this -> cantidad;
     }
     
+    
     function Pedido($idpedido="", $descripcion="", $reserva_idreserva="", $cantidad=""){
         $this -> idpedido = $idpedido;
         $this -> descripcion = $descripcion;
@@ -47,3 +49,6 @@ class Pedido {
     }
     
 }
+
+?>
+

@@ -1,4 +1,5 @@
 <?php
+
 class RecepcionistaDAO {
     private $idrecepcionista;
     private $nombre;
@@ -19,6 +20,7 @@ class RecepcionistaDAO {
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
+
     function registrar(){
         return "insert into recepcionista
                 (nombre, apellido, correo, clave)
@@ -42,3 +44,6 @@ class RecepcionistaDAO {
                 order by apellido";
     }
 }
+
+?>
+

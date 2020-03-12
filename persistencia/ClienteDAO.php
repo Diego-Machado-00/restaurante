@@ -1,4 +1,5 @@
 <?php
+
 class ClienteDAO {
     private $idcliente;
     private $nombre;
@@ -16,6 +17,7 @@ class ClienteDAO {
         $this->cedula = $cedula;
     }
     
+
     function autenticar(){
         return "select idcliente from cliente
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
@@ -46,3 +48,7 @@ class ClienteDAO {
                 order by apellido";
     }
 }
+
+    
+?>
+

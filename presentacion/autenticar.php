@@ -1,6 +1,4 @@
 <?php
-// require 'logica/Persona.php';
-// require 'logica/Administrador.php';
 $correo = $_POST["correo"];
 $clave = $_POST["clave"];
 $administrador = new Administrador("", "", "", $correo, $clave);
