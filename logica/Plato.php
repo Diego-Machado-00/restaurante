@@ -6,7 +6,6 @@ class Plato{
     private $idplato;
     private $nombre;
     private $precio;
-    private $chef_idchef;
     private $categoria_idcategoria;
     private $platoDAO;
     private $conexion;
@@ -22,21 +21,17 @@ class Plato{
         return $this -> precio;
     }
     
-    function getChef(){
-        return $this -> chef_idchef;
-    }
     function getCategoria(){
         return $this -> categoria_idcategoria;
     }
     
-    function Plato($idplato="", $nombre="", $precio="", $chef_idchef="", $categoria_idcategoria=""){
+    function Plato($idplato="", $nombre="", $precio="", $categoria_idcategoria=""){
         $this -> idplato = $idplato;
         $this -> nombre = $nombre;
         $this -> precio = $precio;
-        $this -> chef_idchef = $chef_idchef;
         $this -> categoria_idcategoria = $categoria_idcategoria;
         $this -> conexion = new Conexion();
-        $this -> platoDAO = new PlatoDAO($idplato, $nombre, $precio, $chef_idchef, $categoria_idcategoria);
+        $this -> platoDAO = new PlatoDAO($idplato, $nombre, $precio, $categoria_idcategoria);
     }
     
     function consultarTodos(){
@@ -45,7 +40,7 @@ class Plato{
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2],$registro[3], $registro[4]);
+            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2],$registro[3]);
             $i++;
         }
         $this -> conexion -> cerrar();
@@ -59,8 +54,7 @@ class Plato{
         $this -> idplato = $resultado[0];
         $this -> nombre = $resultado[1];
         $this -> precio = $resultado[2];
-        $this -> chef_idchef = $resultado[3];
-        $this -> categoria_idcategoria = $resultado[4];
+        $this -> categoria_idcategoria = $resultado[3];
         $this -> conexion -> cerrar();
     }
     
@@ -70,7 +64,7 @@ class Plato{
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2], $registro[3],$registro[4]);
+            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2], $registro[3]);
             $i++;
         }
         $this -> conexion -> cerrar();

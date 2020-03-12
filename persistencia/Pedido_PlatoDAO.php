@@ -10,9 +10,9 @@ class Pedido_PlatoDAO {
     }
     
     function consultar(){
-        return "select pedido_idpedido, plato_idplato
+        return "select Pedido_idpedido, Plato_idplato, Chef_idchef, estado
                 from pedido_plato
-                where pedido_idpedido = '" . $this -> pedido_idpedido . "' and plato_idplato = '". $this -> plato_idplato ."'";
+                where Pedido_idpedido = '" . $this -> pedido_idpedido . "' and Plato_idplato = '". $this -> plato_idplato ."'";
     }
     
 }
