@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand"
 		href="index.php?pid=<?php echo base64_encode("presentacion/chef/sesionChef.php")?>"><i
-		class="fas fa-utensils-alt"></i></a>
+		class="fas fa-utensils"></i></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"

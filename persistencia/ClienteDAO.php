@@ -5,6 +5,8 @@ class ClienteDAO {
     private $nombre;
     private $apellido;
     private $correo;
+    private $estado;
+    private $cedula;
     private $clave;
     
     function ClienteDAO($idcliente , $nombre , $apellido , $correo , $clave , $estado, $cedula){
@@ -46,6 +48,14 @@ class ClienteDAO {
         return "select idcliente,nombre, apellido, correo, estado, cedula
                 from cliente
                 order by apellido";
+    }
+    
+    function buscarCliente($filtro){
+        return "select idcliente,nombre, apellido, correo, estado,cedula
+                from cliente
+                where  nombre like '%" . $filtro . "%' or
+                apellido like '%" . $filtro . "%'";
+        
     }
 }
 

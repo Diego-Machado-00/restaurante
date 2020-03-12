@@ -2,6 +2,7 @@
 session_start();
 require 'logica/Persona.php';
 require 'logica/Administrador.php';
+require 'logica/Recepcionista.php';
 require 'logica/Cliente.php';
 require 'logica/Categoria.php';
 require 'logica/Chef.php';
@@ -35,6 +36,7 @@ $(function () {
 
 <body>
 	<?php
+	
 if (isset($_GET["pid"])) {
     $pid = base64_decode($_GET["pid"]);
     if(isset($_GET["nos"]) || (!isset($_GET["nos"]) && $_SESSION['id']!="")){

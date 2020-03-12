@@ -43,6 +43,16 @@ class RecepcionistaDAO {
                 from recepcionista
                 order by apellido";
     }
+    
+    function buscarRecepcionista($filtro){
+        return "select idrecepcionista,nombre, apellido, correo
+                from recepcionista
+                where  nombre like '%" . $filtro . "%' or
+                apellido like '%" . $filtro . "%'";
+        
+    }
+    
+    
 }
 
 ?>

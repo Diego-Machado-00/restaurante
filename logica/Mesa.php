@@ -42,4 +42,30 @@ class Mesa{
         
     }
     
+    function consultarTodos(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mesaDAO -> consultarTodos());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Mesa($registro[0], $registro[1], $registro[2]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
+    function buscarMesa($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mesaDAO -> buscarMesa($filtro));
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Mesa($registro[0], $registro[1], $registro[2]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
 }

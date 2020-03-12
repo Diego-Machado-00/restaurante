@@ -24,6 +24,20 @@ class ReservaDAO {
                 where idreserva =" . $this -> idreserva;
     }
     
+    function consultarTodos() {
+        return "select reserva.idreserva, reserva.hora, reserva.fecha, cliente.nombre, mesa.idmesa, recepcionista.nombre, reserva.estado
+                from reserva,cliente,mesa,recepcionista
+                where cliente.idcliente =cliente_idcliente and mesa.idmesa=mesa_idmesa and recepcionista.idrecepcionista= recepcionista_idrecepcionista";
+    }
+    
+    function buscarReserva($filtro){
+        return "select idreserva, hora, fecha, cliente_idcliente, mesa_idmesa, recepcionista_idrecepcionista, estado
+                from mesa
+                where  fecha like '%" . $filtro . "%' or
+                hora like '%" . $filtro . "%'";
+        
+    }
+    
    
 }
 

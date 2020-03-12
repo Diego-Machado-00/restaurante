@@ -6,7 +6,7 @@ class MesaDAO {
     private $numero_personas;
     
     function MesaDAO ($idmesa, $nombre, $numero_personas){
-        $this -> idingrediente = $idingrediente;
+        $this -> idmesa = $idmesa;
         $this -> nombre = $nombre;
         $this -> numero_personas = $numero_personas;
         
@@ -16,6 +16,19 @@ class MesaDAO {
         return "select idmesa, nombre, numero_personas
                 from mesa
                 where idmesa = '" . $this -> idmesa . "'";
+    }
+    
+    function consultarTodos(){
+        return "select idmesa, nombre, numero_personas
+                from mesa";
+    }
+    
+    function buscarMesa($filtro){
+        return "select idmesa,nombre, numero_personas
+                from mesa
+                where  idmesa like '%" . $filtro . "%' or
+                nombre like '%" . $filtro . "%'";
+        
     }
     
 }

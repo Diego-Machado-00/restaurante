@@ -45,4 +45,12 @@ class ChefDAO {
                 order by apellido";
 
     }
+    
+    function buscarChef($filtro){
+        return "select idchef,nombre, apellido, correo, tarjeraprofesional
+                from chef
+                where  nombre like '%" . $filtro . "%' or
+                apellido like '%" . $filtro . "%'";
+        
+    }
 }

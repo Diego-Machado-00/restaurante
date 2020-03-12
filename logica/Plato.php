@@ -39,6 +39,19 @@ class Plato{
         $this -> platoDAO = new PlatoDAO($idplato, $nombre, $precio, $chef_idchef, $categoria_idcategoria);
     }
     
+    function consultarTodos(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> platoDAO -> consultarTodos());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2],$registro[3], $registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
     function consultar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> platoDAO -> consultar());
@@ -49,6 +62,19 @@ class Plato{
         $this -> chef_idchef = $resultado[3];
         $this -> categoria_idcategoria = $resultado[4];
         $this -> conexion -> cerrar();
+    }
+    
+    function buscarPlato($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> platoDAO -> buscarPlato($filtro));
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2], $registro[3],$registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
     }
 
 }

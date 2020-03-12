@@ -1,5 +1,4 @@
 <?php
-
 require 'persistencia/RecepcionistaDAO.php';
 require_once 'persistencia/Conexion.php';
 
@@ -13,7 +12,6 @@ class Recepcionista extends Persona {
         $this -> recepcionistaDAO = new RecepcionistaDAO($id, $nombre, $apellido, $correo, $clave);
     }
     
-
     function autenticar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> autenticar());
@@ -26,6 +24,19 @@ class Recepcionista extends Persona {
             $this -> conexion -> cerrar();
             return false;
         }
+    }
+    
+    function buscarRecepcionista($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> recepcionistaDAO -> buscarRecepcionista($filtro));
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Recepcionista($registro[0], $registro[1], $registro[2]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
     }
     
     function consultar(){
@@ -73,5 +84,4 @@ class Recepcionista extends Persona {
 }
 
 
-}
 

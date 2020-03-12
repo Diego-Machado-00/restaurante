@@ -8,11 +8,28 @@ class Chef extends Persona{
     private $chefDAO;
     private $conexion;
     
+    function getTarjetaP(){
+        return $this -> tarjetaprofesional;
+    }
+    
     function Chef($id="",$nombre="",$apellido="",$correo="",$clave="",$tarjetaprofesional=""){
         $this -> tarjetaprofesional = $tarjetaprofesional;
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
         $this -> conexion = new Conexion();
         $this -> chefDAO = new ChefDAO($id ,$nombre ,$apellido ,$correo ,$clave ,$tarjetaprofesional ); 
+    }
+    
+    function buscarChef($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> chefDAO -> buscarChef($filtro));
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Chef($registro[0], $registro[1], $registro[2], "", "", $registro[3]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
     }
     
     function autenticar(){
