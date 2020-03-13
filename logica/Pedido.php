@@ -7,7 +7,8 @@ class Pedido {
     private $idpedido;
     private $descripcion;
     private $reserva_idreserva;
-    private $cantidad;
+    private $chef_idchef;
+    private $estado;
     private $pedidoDAO;
     private $conexion;
     
@@ -23,18 +24,24 @@ class Pedido {
         return $this -> reserva_idreserva;
     }
     
-    function getCantidad(){
-        return $this -> cantidad;
+    function getChef(){
+        return $this -> chef_idchef;
     }
     
     
-    function Pedido($idpedido="", $descripcion="", $reserva_idreserva="", $cantidad=""){
+    function getEstado(){
+        return $this -> estado;
+    }
+    
+    
+    function Pedido($idpedido="", $descripcion="", $reserva_idreserva="", $chef_idchef="" , $estado=""){
         $this -> idpedido = $idpedido;
         $this -> descripcion = $descripcion;
         $this -> reserva_idreserva = $reserva_idreserva;
-        $this -> cantidad = $cantidad;
+        $this -> chef_idchef = $chef_idchef;
+        $this -> estado = $estado;
         $this -> conexion = new Conexion();
-        $this -> pedidoDAO = new PedidoDAO($idpedido, $descripcion, $reserva_idreserva, $cantidad);
+        $this -> pedidoDAO = new PedidoDAO($idpedido, $descripcion, $reserva_idreserva,$chef_idchef, $estado);
     }
     
     function consultar(){
@@ -44,7 +51,8 @@ class Pedido {
         $this -> idpedido = $resultado[0];
         $this -> descripcion = $resultado[1];
         $this -> reserva_idreserva = $resultado[2];
-        $this -> cantidad = $resultado[3];
+        $this -> chef_idchef = $resultado[3];
+        $this -> estado = $resultado[4];
         $this -> conexion -> cerrar();
     }
     
