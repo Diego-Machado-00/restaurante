@@ -182,7 +182,10 @@ CREATE TABLE `recepcionista` (
   `correo` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+INSERT INTO `recepcionista` ( `nombre`, `apellido`, `correo`, `clave`) VALUES
+( 'Alejandro', 'Quiroz', '12@12.com', 'c20ad4d76fe97759aa27a0c99bff6710');
+INSERT INTO `recepcionista` ( `nombre`, `apellido`, `correo`, `clave`) VALUES
+( 'Santiago', 'Mendez', '13@13.com', 'c51ce410c124a10e0db5e4b97fc2af39');
 -- --------------------------------------------------------
 
 --
@@ -283,9 +286,7 @@ ALTER TABLE `plato_ingrediente`
 ALTER TABLE `recepcionista`
   ADD PRIMARY KEY (`idrecepcionista`);
 
---
--- Indices de la tabla `reserva`
---
+
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`idreserva`),
   ADD KEY `fk_Reserva_Cliente1_idx` (`Cliente_idcliente`),

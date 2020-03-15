@@ -26,11 +26,11 @@ class RecepcionistaDAO {
                 (nombre, apellido, correo, clave)
                 values ('" . $this->nombre . "', '" . $this->apellido . "', '" . $this->correo . "', md5('" . $this->clave . "'))";
     }
-    
+                                                                                   
     function consultar() {
-        return "select nombre, apellido, correo
+        return "select  nombre, apellido, correo
                 from recepcionista
-                where idrecepcionista =" . $this -> idrecepcionista;
+                where idrecepcionista = " . $this -> idrecepcionista;
     }
     
     function existeCorreo(){

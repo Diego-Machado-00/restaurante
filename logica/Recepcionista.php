@@ -43,10 +43,9 @@ class Recepcionista extends Persona {
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
-        $this -> id = $resultado[0];
-        $this -> nombre = $resultado[1];
-        $this -> apellido = $resultado[2];
-        $this -> correo = $resultado[3];
+        $this -> nombre = $resultado[0];
+        $this -> apellido = $resultado[1];
+        $this -> correo = $resultado[2];
         $this -> conexion -> cerrar();
     }
     
