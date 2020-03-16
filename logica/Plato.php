@@ -7,6 +7,7 @@ class Plato{
     private $nombre;
     private $precio;
     private $categoria_idcategoria;
+    private $foto;
     private $platoDAO;
     private $conexion;
     
@@ -25,13 +26,19 @@ class Plato{
         return $this -> categoria_idcategoria;
     }
     
-    function Plato($idplato="", $nombre="", $precio="", $categoria_idcategoria=""){
+    function getFoto(){
+        return $this -> foto;
+    }
+    
+    
+    function Plato($idplato="", $nombre="", $precio="", $categoria_idcategoria="", $foto=""){
         $this -> idplato = $idplato;
         $this -> nombre = $nombre;
         $this -> precio = $precio;
         $this -> categoria_idcategoria = $categoria_idcategoria;
+        $this -> foto = $foto;
         $this -> conexion = new Conexion();
-        $this -> platoDAO = new PlatoDAO($idplato, $nombre, $precio, $categoria_idcategoria);
+        $this -> platoDAO = new PlatoDAO($idplato, $nombre, $precio, $categoria_idcategoria, $foto);
     }
     
     function consultarTodos(){
@@ -40,7 +47,7 @@ class Plato{
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2],$registro[3]);
+            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2],$registro[3],$registro[4]);
             $i++;
         }
         $this -> conexion -> cerrar();
@@ -55,6 +62,7 @@ class Plato{
         $this -> nombre = $resultado[1];
         $this -> precio = $resultado[2];
         $this -> categoria_idcategoria = $resultado[3];
+        $this -> foto = $resultado[4];
         $this -> conexion -> cerrar();
     }
     
@@ -64,11 +72,17 @@ class Plato{
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2], $registro[3]);
+            $resultados[$i] = new Plato($registro[0], $registro[1], $registro[2], $registro[3], $registro[4]);
             $i++;
         }
         $this -> conexion -> cerrar();
         return $resultados;
+    }
+    
+    function registrar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> platoDAO -> registrar());
+        $this -> conexion -> cerrar();
     }
 
 }

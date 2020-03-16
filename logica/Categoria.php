@@ -34,5 +34,23 @@ class Categoria{
         $this -> conexion -> cerrar();
     }
     
+    function registrar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> categoriaDAO -> registrar());
+        $this -> conexion -> cerrar();
+    }
+    
+    function consultarTodos(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> categoriaDAO -> consultarTodos());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Categoria($registro[0], $registro[1]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
 }
 

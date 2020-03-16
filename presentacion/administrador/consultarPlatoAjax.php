@@ -19,6 +19,7 @@ $platos = $plato->buscarPlato($_REQUEST["fil"]);
         echo "<td>" . $p->getNombre() . "</td>";
         echo "<td>" . $p->getPrecio() . "</td>";
         echo "<td>" . $p->getCategoria() . "</td>";
+        echo "<td>" . (($p->getFoto() != "") ? "<img src='/restaurante/fotos/" . $p->getFoto() . "' height='50px'>" : "") . "</td>";
         echo "</tr>";
     }
     echo "<tr><td colspan='9'>" . count($platos) . " registros encontrados</td></tr>"?>	

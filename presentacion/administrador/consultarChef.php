@@ -29,7 +29,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 										<th scope="col">Nombre</th>
 										<th scope="col">Apellido</th>
 										<th scope="col">Correo</th>
-										<th scope="col">Tarjeta Profesionar</th>
+										<th scope="col">Tarjeta Profesional</th>
 									</tr>
 								</thead>
 								<tbody>

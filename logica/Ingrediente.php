@@ -33,6 +33,12 @@ class Ingrediente{
         $this -> conexion -> cerrar();
     }
     
+    function registrar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> ingredienteDAO -> registrar());
+        $this -> conexion -> cerrar();
+    }
+    
 }
 
 

@@ -42,6 +42,7 @@ class Cliente extends Persona{
         if($this -> conexion -> numFilas() == 1){
             $resultado = $this -> conexion -> extraer();
             $this -> id = $resultado[0];
+            $this -> estado = $resultado[1];
             $this -> conexion -> cerrar();
             return true;
         } else {

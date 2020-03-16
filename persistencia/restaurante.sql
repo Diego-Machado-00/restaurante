@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-03-2020 a las 00:45:45
+-- Tiempo de generación: 16-03-2020 a las 23:22:05
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -81,7 +81,8 @@ CREATE TABLE `cliente` (
   `apellido` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL,
-  `estado` int(11) NOT NULL
+  `estado` int(11) NOT NULL,
+  `cedula` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -93,7 +94,7 @@ CREATE TABLE `cliente` (
 CREATE TABLE `factura` (
   `idfactura` int(10) UNSIGNED NOT NULL,
   `montoFinal` double NOT NULL,
-  `Pedido_idpedido` int(11) NOT NULL
+  `pedido_idpedido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -128,8 +129,9 @@ CREATE TABLE `mesa` (
 CREATE TABLE `pedido` (
   `idpedido` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
-  `Reserva_idreserva` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `reserva_idreserva` int(11) NOT NULL,
+  `chef_idchef` int(11) NOT NULL,
+  `estado` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -141,8 +143,7 @@ CREATE TABLE `pedido` (
 CREATE TABLE `pedido_plato` (
   `Pedido_idpedido` int(11) NOT NULL,
   `Plato_idplato` int(11) NOT NULL,
-  `Chef_idchef` int(11) NOT NULL,
-  `estado` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -155,7 +156,8 @@ CREATE TABLE `plato` (
   `idplato` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `precio` varchar(45) NOT NULL,
-  `Categoria_idcategoria` int(11) NOT NULL
+  `categoria_idcategoria` int(11) NOT NULL,
+  `foto` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -182,10 +184,7 @@ CREATE TABLE `recepcionista` (
   `correo` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `recepcionista` ( `nombre`, `apellido`, `correo`, `clave`) VALUES
-( 'Alejandro', 'Quiroz', '12@12.com', 'c20ad4d76fe97759aa27a0c99bff6710');
-INSERT INTO `recepcionista` ( `nombre`, `apellido`, `correo`, `clave`) VALUES
-( 'Santiago', 'Mendez', '13@13.com', 'c51ce410c124a10e0db5e4b97fc2af39');
+
 -- --------------------------------------------------------
 
 --
@@ -196,9 +195,9 @@ CREATE TABLE `reserva` (
   `idreserva` int(11) NOT NULL,
   `hora` time NOT NULL,
   `fecha` date NOT NULL,
-  `Cliente_idcliente` int(11) NOT NULL,
-  `Mesa_idmesa` int(11) NOT NULL,
-  `Recepcionista_idrecepcionista` int(11) NOT NULL,
+  `cliente_idcliente` int(11) NOT NULL,
+  `mesa_idmesa` int(11) NOT NULL,
+  `recepcionista_idrecepcionista` int(11) NOT NULL,
   `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -235,7 +234,7 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`idfactura`),
-  ADD KEY `fk_Factura_Pedido1_idx` (`Pedido_idpedido`);
+  ADD KEY `fk_Factura_Pedido1_idx` (`pedido_idpedido`);
 
 --
 -- Indices de la tabla `ingrediente`
@@ -254,7 +253,8 @@ ALTER TABLE `mesa`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`idpedido`),
-  ADD KEY `fk_Pedido_Reserva1_idx` (`Reserva_idreserva`);
+  ADD KEY `fk_Pedido_Reserva1_idx` (`reserva_idreserva`),
+  ADD KEY `fk_Pedido_Chef1_idx` (`chef_idchef`);
 
 --
 -- Indices de la tabla `pedido_plato`
@@ -262,15 +262,14 @@ ALTER TABLE `pedido`
 ALTER TABLE `pedido_plato`
   ADD PRIMARY KEY (`Pedido_idpedido`,`Plato_idplato`),
   ADD KEY `fk_Pedido_has_Plato_Plato1_idx` (`Plato_idplato`),
-  ADD KEY `fk_Pedido_has_Plato_Pedido1_idx` (`Pedido_idpedido`),
-  ADD KEY `fk_Pedido_Plato_Chef1_idx` (`Chef_idchef`);
+  ADD KEY `fk_Pedido_has_Plato_Pedido1_idx` (`Pedido_idpedido`);
 
 --
 -- Indices de la tabla `plato`
 --
 ALTER TABLE `plato`
   ADD PRIMARY KEY (`idplato`),
-  ADD KEY `fk_Plato_Categoria1_idx` (`Categoria_idcategoria`);
+  ADD KEY `fk_Plato_Categoria1_idx` (`categoria_idcategoria`);
 
 --
 -- Indices de la tabla `plato_ingrediente`
@@ -286,12 +285,14 @@ ALTER TABLE `plato_ingrediente`
 ALTER TABLE `recepcionista`
   ADD PRIMARY KEY (`idrecepcionista`);
 
-
+--
+-- Indices de la tabla `reserva`
+--
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`idreserva`),
-  ADD KEY `fk_Reserva_Cliente1_idx` (`Cliente_idcliente`),
-  ADD KEY `fk_Reserva_Mesa1_idx` (`Mesa_idmesa`),
-  ADD KEY `fk_Reserva_Recepcionista1_idx` (`Recepcionista_idrecepcionista`);
+  ADD KEY `fk_Reserva_Cliente1_idx` (`cliente_idcliente`),
+  ADD KEY `fk_Reserva_Mesa1_idx` (`mesa_idmesa`),
+  ADD KEY `fk_Reserva_Recepcionista1_idx` (`recepcionista_idrecepcionista`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -328,6 +329,12 @@ ALTER TABLE `ingrediente`
   MODIFY `idingrediente` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mesa`
+--
+ALTER TABLE `mesa`
+  MODIFY `idmesa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
@@ -337,7 +344,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `plato`
 --
 ALTER TABLE `plato`
-  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcionista`
@@ -359,19 +366,19 @@ ALTER TABLE `reserva`
 -- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `fk_Factura_Pedido1` FOREIGN KEY (`Pedido_idpedido`) REFERENCES `pedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Factura_Pedido1` FOREIGN KEY (`pedido_idpedido`) REFERENCES `pedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `fk_Pedido_Reserva1` FOREIGN KEY (`Reserva_idreserva`) REFERENCES `reserva` (`idreserva`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Pedido_Chef1` FOREIGN KEY (`chef_idchef`) REFERENCES `chef` (`idchef`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Pedido_Reserva1` FOREIGN KEY (`reserva_idreserva`) REFERENCES `reserva` (`idreserva`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `pedido_plato`
 --
 ALTER TABLE `pedido_plato`
-  ADD CONSTRAINT `fk_Pedido_Plato_Chef1` FOREIGN KEY (`Chef_idchef`) REFERENCES `chef` (`idchef`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Pedido_has_Plato_Pedido1` FOREIGN KEY (`Pedido_idpedido`) REFERENCES `pedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Pedido_has_Plato_Plato1` FOREIGN KEY (`Plato_idplato`) REFERENCES `plato` (`idplato`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -379,7 +386,7 @@ ALTER TABLE `pedido_plato`
 -- Filtros para la tabla `plato`
 --
 ALTER TABLE `plato`
-  ADD CONSTRAINT `fk_Plato_Categoria1` FOREIGN KEY (`Categoria_idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Plato_Categoria1` FOREIGN KEY (`categoria_idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `plato_ingrediente`
@@ -392,9 +399,9 @@ ALTER TABLE `plato_ingrediente`
 -- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `fk_Reserva_Cliente1` FOREIGN KEY (`Cliente_idcliente`) REFERENCES `cliente` (`idcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Reserva_Mesa1` FOREIGN KEY (`Mesa_idmesa`) REFERENCES `mesa` (`idmesa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Reserva_Recepcionista1` FOREIGN KEY (`Recepcionista_idrecepcionista`) REFERENCES `recepcionista` (`idrecepcionista`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Reserva_Cliente1` FOREIGN KEY (`cliente_idcliente`) REFERENCES `cliente` (`idcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Reserva_Mesa1` FOREIGN KEY (`mesa_idmesa`) REFERENCES `mesa` (`idmesa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Reserva_Recepcionista1` FOREIGN KEY (`recepcionista_idrecepcionista`) REFERENCES `recepcionista` (`idrecepcionista`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

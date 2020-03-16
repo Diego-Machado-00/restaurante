@@ -34,8 +34,17 @@ class RecepcionistaDAO {
     }
     
     function existeCorreo(){
-        return "select idrecepcionista from recepcionista
-                where correo = '" . $this->correo . "'";
+        return "SELECT idrecepcionista
+                FROM recepcionista
+                where correo= ALL(
+	               SELECT idchef
+	               FROM chef
+	               where correo = ALL(
+                        SELECT idcliente
+	                    FROM cliente
+	                    where correo='". $this -> correo ."'
+	                        
+        )); ";
     }
     
     function consultarTodos(){

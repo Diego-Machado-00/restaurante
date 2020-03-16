@@ -35,8 +35,17 @@ class ChefDAO {
     }
     
     function existeCorreo(){
-        return "select idchef from chef
-                where correo = '" . $this->correo . "'";
+        return "SELECT idchef
+                FROM chef
+                where correo= ALL(
+	               SELECT idrecepcionista
+	               FROM recepcionista
+	               where correo = ALL(
+                        SELECT idcliente
+	                    FROM cliente
+	                    where correo='". $this -> correo ."'
+        
+        )); ";
     }
     
     function consultarTodos(){

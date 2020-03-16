@@ -21,15 +21,22 @@ class ClienteDAO {
     
 
     function autenticar(){
-        return "select idcliente from cliente
+        return "select idcliente, estado from cliente
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
     function existeCorreo(){
-        return "select idcliente from cliente, recepcionista, chef
-                where cliente.correo = '" . $this->correo . "' or 
-                recepcionista.correo = '". $this->correo. "' or 
-                chef.correo = '". $this-> correo ."'";
+        return "SELECT idcliente
+                FROM cliente
+                where correo= ALL(
+	               SELECT idrecepcionista
+	               FROM recepcionista
+	               where correo = ALL(
+                        SELECT idchef
+	                    FROM chef
+	                    where correo='". $this -> correo ."'
+	                        
+        )); ";;
     }
     
     function registrar(){

@@ -15,5 +15,17 @@ class CategoriaDAO {
                 where idcategoria = '" . $this -> idcategoria . "'";
     }
     
+    function registrar(){
+        return "insert into categoria (nombre) 
+                value ('". $this -> nombre ."')";
+                
+    }
+    
+    function consultarTodos(){
+        return "select idcategoria, nombre
+                from categoria";
+        
+    }
+    
 }
 

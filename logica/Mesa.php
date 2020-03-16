@@ -68,4 +68,10 @@ class Mesa{
         return $resultados;
     }
     
+    function registrar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mesaDAO -> registrar());
+        $this -> conexion -> cerrar();
+    }
+    
 }

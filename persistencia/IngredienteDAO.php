@@ -16,6 +16,12 @@ class IngredienteDAO {
                 where idingrediente = '" . $this -> idingrediente . "'";
     }
     
+    function registrar(){
+        return "insert into ingrediente (nombre)
+                value ('". $this -> nombre ."')";
+        
+    }
+    
 }
 
 ?>

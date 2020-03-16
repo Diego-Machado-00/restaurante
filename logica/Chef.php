@@ -25,7 +25,7 @@ class Chef extends Persona{
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Chef($registro[0], $registro[1], $registro[2], "", "", $registro[3]);
+            $resultados[$i] = new Chef($registro[0], $registro[1], $registro[2], $registro[3], "", $registro[4]);
             $i++;
         }
         $this -> conexion -> cerrar();
@@ -82,7 +82,7 @@ class Chef extends Persona{
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Chef($registro[0], $registro[1], $registro[2], "", $registro[3], $registro[4]);
+            $resultados[$i] = new Chef($registro[0], $registro[1], $registro[2], $registro[3], "", $registro[4]);
             $i++;
         }
         $this -> conexion -> cerrar();

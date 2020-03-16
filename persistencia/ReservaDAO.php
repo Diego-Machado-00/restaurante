@@ -34,7 +34,9 @@ class ReservaDAO {
         return "select idreserva, hora, fecha, cliente_idcliente, mesa_idmesa, recepcionista_idrecepcionista, estado
                 from mesa
                 where  fecha like '%" . $filtro . "%' or
-                hora like '%" . $filtro . "%'";
+                hora like '%" . $filtro . "%' or
+                cliente_idcliente like '%". $filtro ."%'
+                order by fecha";
         
     }
     

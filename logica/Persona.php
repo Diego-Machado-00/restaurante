@@ -27,6 +27,7 @@ class Persona {
     function getCorreo(){
         return $this -> correo;
     }
+    
     function getClave(){
         return $this -> clave;
     }

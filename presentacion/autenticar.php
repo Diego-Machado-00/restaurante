@@ -8,8 +8,15 @@ if($administrador -> autenticar()){
 }else{
     $cliente = new Cliente("", "", "", $correo, $clave);
     if($cliente -> autenticar()){
-        $_SESSION['id'] = $cliente -> getId();
-        header("Location: index.php?pid=" . base64_encode("presentacion/cliente/sesionCliente.php"));
+        if($cliente -> getEstado() != 0 ){
+            $_SESSION['id'] = $cliente -> getId();
+            header("Location: index.php?pid=" . base64_encode("presentacion/cliente/sesionCliente.php"));
+        }else{
+            echo'<script type="text/javascript">
+                 alert("Usuario No autorizado");
+                 window.location.href="index.php";
+                  </script>';       
+        }
     }else{
         $recepcionista = new Recepcionista("", "", "", $correo, $clave);
         if($recepcionista -> autenticar()){
