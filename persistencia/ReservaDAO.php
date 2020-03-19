@@ -23,9 +23,12 @@ class ReservaDAO {
                 from reserva
                 where idreserva =" . $this -> idreserva;
     }
-    
+    function registrar(){
+        return "INSERT INTO reserva (hora,fecha,cliente_idcliente, mesa_idmesa, recepcionista_idrecepcionista,estado)
+VALUES (".$this -> hora.",".$this -> fecha.",".$this ->cliente_idcliente.",".$this ->mesa_idmesa.",".$this ->recepcionista_idrecepcionista.",0) ";
+    }
     function consultarTodos() {
-        return "select reserva.idreserva, reserva.hora, reserva.fecha, cliente.nombre, mesa.idmesa, recepcionista.nombre, reserva.estado
+        return "select reserva.idreserva, reserva.hora, reserva.fecha, cliente.id, mesa.idmesa, recepcionista.nombre, reserva.estado
                 from reserva,cliente,mesa,recepcionista
                 where cliente.idcliente =cliente_idcliente and mesa.idmesa=mesa_idmesa and recepcionista.idrecepcionista= recepcionista_idrecepcionista";
     }

@@ -93,6 +93,13 @@ class Reserva {
         $this -> estado = $resultado[5];
         $this -> conexion -> cerrar();
     }
+    function registrar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> reservaDAO -> registrar());
+       
+      
+        $this -> conexion -> cerrar();
+    }
     
 }
 

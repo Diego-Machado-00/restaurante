@@ -51,6 +51,12 @@ class ClienteDAO {
                 where idcliente =" . $this -> idcliente;
     }
     
+    function consultar_nombre(){
+        return "select nombre, apellido, correo, estado, cedula
+                from cliente
+                where nombre =" . $this -> nombre;
+    }
+    
     function consultarTodos(){
         return "select idcliente,nombre, apellido, correo, estado, cedula
                 from cliente

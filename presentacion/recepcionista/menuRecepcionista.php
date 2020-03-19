@@ -16,6 +16,12 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/recepcionista/consultarReserva.php")?>">reserva</a> 
 				</div></li>
+				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+				href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Crear </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/recepcionista/seleccionarMesa.php")?>">reserva</a> 
+				</div></li>
 			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a>
 			</li>
 		</ul>

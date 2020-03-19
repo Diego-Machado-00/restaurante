@@ -44,7 +44,7 @@ include 'presentacion/recepcionista/menuRecepcionista.php';
         echo "<td>" . $r-> getCliente() . "</td>";
         echo "<td>" . $r-> getMesa(). "</td>";
         echo "<td>" . $r-> getRecepcionista() . "</td>";
-        echo "<td><span class='fas " . ($r->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($r->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span></td>";
+        echo "<td><span class='fas " . ($r->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "'  id='cambiarEstado" . $r->getId() . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($r->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span></td>";
         echo "</tr>";
     }
     echo "<tr><td colspan='9'>" . count($reservas) . " registros encontrados</td></tr>"?>	
@@ -72,5 +72,16 @@ $(document).ready(function(){
 	     }
 	
 	});
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	<?php foreach ($reservas as $r) { ?>
+	$("#cambiarEstado<?php echo $r -> getId(); ?>").click(function(e){
+		e.preventDefault();
+		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/recepcionista/editarEstadoReservaAjax.php") . "&idReserva=" . $r -> getId() . "&estado=" . (($r -> getEstado() == 0)?"1":"0") . "&cl=".$r ->getCliente()."\";\n"; ?>
+		$("#estado<?php echo $r -> getId(); ?>").load(ruta);
+	});
+	<?php } ?>
 });
 </script>

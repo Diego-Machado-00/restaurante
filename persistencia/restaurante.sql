@@ -84,6 +84,8 @@ CREATE TABLE `cliente` (
   `estado` int(11) NOT NULL,
   `cedula` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `correo`, `clave`, `estado`, `cedula`) VALUES
+(1, 'Ronald', 'Guzman','rg@rg.com','0ecb2b966eca6994910caee2947f667',0,4563567654);
 
 -- --------------------------------------------------------
 
@@ -119,6 +121,17 @@ CREATE TABLE `mesa` (
   `nombre` varchar(45) NOT NULL,
   `numero_personas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
+(1, 'mesa1', 3);
+INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
+(2, 'mesa2', 3);
+INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
+(3, 'mesa3', 6);
+INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
+(4, 'mesa4', 9);
+
 
 -- --------------------------------------------------------
 
