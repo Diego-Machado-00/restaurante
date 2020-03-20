@@ -14,7 +14,7 @@
 				href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false"> Consultar </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/pedido/consultarPedido.php")?>">Pedido</a> 
+					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/chef/consultarPedido.php")?>">Pedido</a> 
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a>
 			</li>

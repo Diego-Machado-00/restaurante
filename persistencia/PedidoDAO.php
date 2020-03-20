@@ -21,6 +21,26 @@ class PedidoDAO {
                 from pedido, chef
                 where idreserva = '" . $this -> idreserva . "' and chef.idchef= chef_idchef";
     }
+    function consultarTodos(){
+        return "select idpedido, descripcion, reserva_idreserva, chef.idchef, estado
+                from pedido,chef
+                order by idpedido";
+    }
+    
+    function actualizarEstado(){
+        return "update pedido set
+                estado = '" . $this -> estado . "'
+                where idpedido=" . $this -> id;
+    }
+    function buscarPedido($filtro){
+        return "select  idpedido, descripcion, reserva_idreserva, chef.nombre, estado
+                from pedido,chef
+                where  descripcion like '%" . $filtro . "%' or
+                 reserva_idreserva like '%" . $filtro . "%' or
+                chef.nombre like '%" . $filtro . "%' 
+                order by fecha";
+        
+    }
     
 }
 

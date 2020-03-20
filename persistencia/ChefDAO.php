@@ -29,7 +29,7 @@ class ChefDAO {
     }
     
     function consultar() {
-        return "select nombre, apellido, correo,  tarjetaprofesional
+        return "select idchef,nombre, apellido, correo,  tarjetaprofesional
                 from chef
                 where idchef =" . $this -> idchef;
     }

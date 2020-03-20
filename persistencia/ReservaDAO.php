@@ -28,19 +28,24 @@ class ReservaDAO {
 VALUES (".$this -> hora.",".$this -> fecha.",".$this ->cliente_idcliente.",".$this ->mesa_idmesa.",".$this ->recepcionista_idrecepcionista.",0) ";
     }
     function consultarTodos() {
-        return "select reserva.idreserva, reserva.hora, reserva.fecha, cliente.id, mesa.idmesa, recepcionista.nombre, reserva.estado
-                from reserva,cliente,mesa,recepcionista
-                where cliente.idcliente =cliente_idcliente and mesa.idmesa=mesa_idmesa and recepcionista.idrecepcionista= recepcionista_idrecepcionista";
+        return "select idreserva,hora,fecha,cliente_idcliente,mesa.idmesa,recepcionista_idrecepcionista,estado
+                from reserva,mesa
+                order by idreserva";
     }
     
     function buscarReserva($filtro){
         return "select idreserva, hora, fecha, cliente_idcliente, mesa_idmesa, recepcionista_idrecepcionista, estado
-                from mesa
+                from reserva
                 where  fecha like '%" . $filtro . "%' or
                 hora like '%" . $filtro . "%' or
                 cliente_idcliente like '%". $filtro ."%'
                 order by fecha";
         
+    }
+    function actualizarEstado(){
+        return "update reserva set
+                estado = '" . $this -> estado . "'
+                where idreserva=" . $this -> id;
     }
     
    

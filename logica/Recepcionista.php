@@ -70,10 +70,11 @@ class Recepcionista extends Persona {
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> consultarTodos());
+        
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Recepcionista($registro[0], $registro[1], $registro[2], "", $registro[3]);
+            $resultados[$i] = new Recepcionista($registro[0], $registro[1], $registro[2], $registro[3], "");
             $i++;
         }
         $this -> conexion -> cerrar();
