@@ -1,7 +1,7 @@
 <?php
 $administrador = new Administrador($_SESSION['id']);
 $administrador->consultar();
-$recepcionista = new Plato();
+$recepcionista = new Recepcionista();
 $recepcionistas = $recepcionista ->consultarTodos();
 include 'presentacion/administrador/menuAdministrador.php';
 ?>

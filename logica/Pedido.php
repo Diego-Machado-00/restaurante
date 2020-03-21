@@ -56,6 +56,12 @@ class Pedido {
         $this -> conexion -> cerrar();
     }
     
+    function actualizarEstado(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> pedidoDAO ->actualizarEstado());
+        $this -> conexion -> cerrar();
+    }
+    
 }
 
 ?>

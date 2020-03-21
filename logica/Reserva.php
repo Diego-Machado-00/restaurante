@@ -50,6 +50,7 @@ class Reserva {
         $this -> fecha = $fecha;
         $this -> cliente_idcliente = $cliente_idcliente;
         $this -> recepcionista_idrecepcionista = $recepcionista_idrecepcionista;
+        $this -> mesa_idmesa = $mesa_idmesa;
         $this -> estado = $estado;
         $this -> conexion = new Conexion();
         $this -> reservaDAO = new ReservaDAO($idreserva, $hora, $fecha, $cliente_idcliente, $mesa_idmesa, $recepcionista_idrecepcionista, $estado);
@@ -61,12 +62,26 @@ class Reserva {
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Reserva($registro[0], $registro[1], $registro[2],$registro[3], $registro[4], $registro[5]);
+            $resultados[$i] = new Reserva($registro[0], $registro[1], $registro[2],$registro[3], $registro[4], $registro[5], $registro[6]);
             $i++;
         }
         $this -> conexion -> cerrar();
         return $resultados;
     }
+    
+    function consultarReservaCliente(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> reservaDAO -> consultarReservaCliente());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Reserva($registro[0], $registro[1], $registro[2],$registro[3], $registro[4], $registro[5], $registro[6]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
     
     function buscarReserva($filtro){
         $this -> conexion -> abrir();
@@ -98,6 +113,12 @@ class Reserva {
         $this -> conexion -> ejecutar($this -> reservaDAO -> registrar());
        
       
+        $this -> conexion -> cerrar();
+    }
+    
+    function actualizarEstado(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> reservaDAO ->actualizarEstado());
         $this -> conexion -> cerrar();
     }
     

@@ -39,6 +39,12 @@ class ClienteDAO {
         )); ";;
     }
     
+    function actualizarEstado(){
+        return "update cliente set
+                estado = " . $this -> estado . "
+                where idcliente=" . $this -> idcliente;
+    }
+    
     function registrar(){
         return "insert into cliente
                 (nombre, apellido, correo, clave, estado, cedula)

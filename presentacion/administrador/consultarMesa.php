@@ -34,7 +34,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 						<?php
     foreach ($mesas as $m) {
         echo "<tr>";
-        echo "<td>" . $m->getIdnesa() . "</td>";
+        echo "<td>" . $m->getIdmesa() . "</td>";
         echo "<td>" . $m->getNombre() . "</td>";
         echo "<td>" . $m->getNpersonas() . "</td>";
         echo "</tr>";

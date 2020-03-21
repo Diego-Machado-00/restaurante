@@ -2,8 +2,6 @@
 $exito = "";
 $administrador = new Administrador($_SESSION['id']);
 $administrador->consultar();
-$categoria = new Categoria();
-$categorias = $categoria -> consultarTodos();
 
 if (isset($_POST["registrar"])) {
     $nombre = $_POST["nombre"];
@@ -24,7 +22,7 @@ if (isset($_POST["registrar"])) {
                 // movemos la imagen de la carpeta temporal al directorio escogido
                 move_uploaded_file($_FILES['foto']['tmp_name'], $carpeta_destino . $nombre_hora_imagen);
 
-                $plato = new Plato( "", $nombre, $precio, $ca, $nombre_hora_imagen); // Crear el atributo foto en Paciente
+                $plato = new Plato( "", $nombre, $precio, $nombre_hora_imagen); // Crear el atributo foto en Paciente
                 $plato->registrar();
             } else {
                 $exito = "El tipo de la foto solo puede ser png,jpeg y jpg";
@@ -70,14 +68,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 						<div class="form-group">
 							<input type="text" name="precio" class="form-control"
 								placeholder="Precio" required="required">
-						</div>
-						<div>
-						<label>Ingrese Categoria</label>
-						<select name="Categoria">
-						<?php foreach ($categorias as $c){?>
-                        <option value="<?php echo $c -> getIdcategoria();?>"><?php echo $c -> getNombre();?></option>
-                        <?php }?>
-                        </select>
 						</div>
 						<div class="form-group">
 							<input type="file" name="foto" size="30" class="form-control"

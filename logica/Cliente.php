@@ -55,12 +55,11 @@ class Cliente extends Persona{
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
-        $this -> id = $resultado[0];
-        $this -> nombre = $resultado[1];
-        $this -> apellido = $resultado[2];
-        $this -> correo = $resultado[3];
-        $this -> estado = $resultado[4];
-        $this -> cedula = $resultado[5];
+        $this -> nombre = $resultado[0];
+        $this -> apellido = $resultado[1];
+        $this -> correo = $resultado[2];
+        $this -> estado = $resultado[3];
+        $this -> cedula = $resultado[4];
         $this -> conexion -> cerrar();
     }
     
@@ -94,6 +93,14 @@ class Cliente extends Persona{
         $this -> conexion -> cerrar();
         return $resultados;
     }
+    
+    function actualizarEstado(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO ->actualizarEstado());
+        $this -> conexion -> cerrar();
+    }
+
+    
     
 }
 
