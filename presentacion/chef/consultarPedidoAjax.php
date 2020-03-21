@@ -17,7 +17,7 @@ $pedidos = $pedido->buscarPedido($_REQUEST["fil"]);
 						<?php
     foreach ($pedidos  as $p) {
         echo "<tr>";
-        echo "<td>" . $p . "</td>";
+       
         echo "<td>" . $p-> getIdPedido() . "</td>";
         echo "<td>" . $p-> getDescripcion() . "</td>";
         echo "<td>" . $p-> getReserva() . "</td>";

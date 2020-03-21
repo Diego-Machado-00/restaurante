@@ -40,7 +40,7 @@ include 'presentacion/chef/menuChef.php';
         echo "<td>" . $p-> getIdPedido() . "</td>";
         echo "<td>" . $p-> getDescripcion() . "</td>";
         echo "<td>" . $p-> getReserva() . "</td>";
-        echo "<td><span class='fas " . ($p->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "'  id='cambiarEstado" . $p->getIdPedido() . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($p->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span></td>";
+        echo "<td><span  id='cambiarEstado" . $p->getIdPedido() . "'  data-toggle='tooltip'  class='tooltipLink' data-placement='left' data-original-title='" . ($p->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ><button  class='fas " . ($p->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "' href='#'></button></span></td>";
         echo "</tr>";
     }
     echo "<tr><td colspan='9'>" . count($pedidos) . " registros encontrados</td></tr>"?>	
@@ -73,10 +73,10 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){
 	<?php foreach ($pedidos as $p) { ?>
-	$("#cambiarEstado<?php echo $p -> getId(); ?>").click(function(e){
+	$("#cambiarEstado<?php echo $p -> getIdPedido(); ?>").click(function(e){
 		e.preventDefault();
 		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/chef/editarEstadoPedidoAjax.php") . "&idPedido=" . $p -> getIdPedido() . "&estado=" . (($p -> getEstado() == 0)?"1":"0") . "\";\n"; ?>
-		$("#estado<?php echo $p ->getIdPedido(); ?>").load(ruta);
+		$("#cambiarEstado<?php echo $p ->getIdPedido(); ?>").load(ruta);
 	});
 	<?php } ?>
 });
