@@ -27,6 +27,8 @@ if($administrador -> autenticar()){
             if($chef -> autenticar()){
                 $_SESSION['id'] = $chef -> getId();
                 header("Location: index.php?pid=" . base64_encode("presentacion/chef/sesionChef.php"));
+            }else{
+                header("Location: index.php");
             }
         }
     }

@@ -1,9 +1,9 @@
 <?php
-$recepcionista = new Recepcionista($_SESSION['id']);
-$recepcionista->consultar();
+$cliente = new Cliente($_SESSION['id']);
+$cliente->consultar();
 $reserva = new Reserva();
 $reservas = $reserva->consultarTodos();
-include 'presentacion/recepcionista/menuRecepcionista.php';
+include 'presentacion/cliente/menuCliente.php';
 ?>
 <div class="container mt-4">
 	<div class="row">
@@ -46,8 +46,9 @@ include 'presentacion/recepcionista/menuRecepcionista.php';
         echo "<td>" . $r-> getMesa(). "</td>";
         echo "<td>" . $r-> getRecepcionista() . "</td>";
         echo "<td><div id=estado" . $r->getIdreserva() . "><span class='fas " . ($r->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($r->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span>" . "</div></td>";
-        echo "<td>" . " <a id='cambiarEstado" . $r->getIdreserva() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($r->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a>
-                                                   </td>";
+        if($r->getEstado() == 1){
+            echo "<td>" ."<a class='fas fa-cart-arrow-down' href='index.php?pid=" . base64_encode("presentacion/cliente/consultarPlato.php") . "&idReserva=" . $r-> getIdreserva()  . "' data-toggle='tooltip' data-placement='left' title='Agregar Pedido'> </a></td>";
+        }
         echo "</tr>";
     }
     echo "<tr><td colspan='9'>" . count($reservas) . " registros encontrados</td></tr>"?>	
@@ -67,7 +68,7 @@ $(document).ready(function(){
 	     var fil = $("#Filtro").val();
 	     console.log(fil);
 	     if(fil.length>=1){
-		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/recepcionista/consultarReservaAjax.php")."\";\n";?>
+		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/cliente/consultarReservaAjax.php")."\";\n";?>
 			 $("#resultadosReserva").load(ruta,{fil});
 	     }else{
 		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
@@ -76,15 +77,3 @@ $(document).ready(function(){
 	
 	});
 });
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-	<?php foreach ($reservas as $r) { ?>
-	$("#cambiarEstado<?php echo $r -> getId(); ?>").click(function(e){
-		e.preventDefault();
-		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/recepcionista/editarEstadoReservaAjax.php") . "&idReserva=" . $r -> getIdreserva() . "&estado=" . (($r -> getEstado() == 0)?"1":"0") ."\";\n"; ?>
-		$("#estado<?php echo $r -> getId(); ?>").load(ruta);
-	});
-	<?php } ?>
-});
-</script>

@@ -3,7 +3,7 @@ $cliente = new Cliente($_SESSION['id']);
 $cliente->consultar();
 include 'presentacion/cliente/menuCliente.php';
 ?>
-<div class="container">
+<div class="container mt-4">
 	<div class="row">
 		<div class="col-12">
 			<div class="card">

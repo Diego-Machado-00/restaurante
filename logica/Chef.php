@@ -50,11 +50,10 @@ class Chef extends Persona{
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> chefDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
-        $this -> idchef = $resultado[0];
-        $this -> nombre = $resultado[1];
-        $this -> apellido = $resultado[2];
-        $this -> correo = $resultado[3];
-        $this -> tarjetaprofesional = $resultado[4];
+        $this -> nombre = $resultado[0];
+        $this -> apellido = $resultado[1];
+        $this -> correo = $resultado[2];
+        $this -> tarjetaprofesional = $resultado[3];
         $this -> conexion -> cerrar();
     }
     

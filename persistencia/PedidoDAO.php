@@ -42,6 +42,13 @@ class PedidoDAO {
         
     }
     
+    function actualizarEstado(){
+        return "update pedido set
+                estado = " . $this -> estado . "
+                where idpedido=" . $this -> idpedido;
+    }
+    
+    
 }
 
 ?>

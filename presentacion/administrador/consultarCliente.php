@@ -44,7 +44,7 @@ include 'presentacion/administrador/menuAdministrador.php';
                                     echo "<td>" . $c->getCorreo() . "</td>";
                                     echo "<td><div id=estado" . $c->getId() . "><span class='fas " . ($c->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($c->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span>" . "</div></td>";
                                     echo "<td>" . $c->getCedula(). "</td>";
-                                    echo "<td>" . "<a href='indexAjax.php?pid=". base64_encode("modalPaciente.php") . "&idCliente=" . $c->getId() . "' data-toggle='modal' data-target='#modalCliente' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
+                                    echo "<td>" . "<a href='indexAjax.php?pid=". base64_encode("presentacion/modalCliente.php") . "&idCliente=" . $c->getId() . "' data-toggle='modal' data-target='#modalCliente' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
                                                    <a id='cambiarEstado" . $c->getId() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($c->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a>
                                                    </td>";
                                     echo "</tr>";
@@ -75,8 +75,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 <script type="text/javascript">
 $(document).ready(function(){
 	<?php foreach ($clientes as $c) { ?>
-	$("#cambiarEstado<?php echo $c -> getId(); ?>").click(function(e){
-		e.preventDefault();
+	$("#cambiarEstado<?php echo $c -> getId(); ?>").click(){
 		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/administrador/editarEstadoClienteAjax.php") . "&idCliente=" . $c -> getId() . "&estado=" . (($c -> getEstado() == 0)?"1":"0") . "\";\n"; ?>
 		$("#estado<?php echo $c -> getId(); ?>").load(ruta);
 	});

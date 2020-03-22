@@ -29,8 +29,6 @@
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/agregarRecepcionista.php")?>">Recepcionista</a>
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/agregarMesa.php")?>">Mesa</a>
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/agregarPlato.php")?>">Plato</a>
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/agregarIngrediente.php")?>">Ingrediente</a>
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/agregarCategoria.php")?>">Categoria</a>
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a>
 			</li>
