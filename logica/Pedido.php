@@ -85,11 +85,7 @@ class Pedido {
         return $resultados;
     }
     
-    function actualizarEstado(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> pedidoDAO ->actualizarEstado());
-        $this -> conexion -> cerrar();
-    }
+ 
     
 }
 

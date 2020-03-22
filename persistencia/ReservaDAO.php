@@ -35,12 +35,7 @@ class ReservaDAO {
         return "INSERT INTO reserva (hora,fecha,cliente_idcliente, mesa_idmesa, recepcionista_idrecepcionista,estado)
                 VALUES ('".$this -> hora."','".$this -> fecha."',".$this ->cliente_idcliente.",".$this ->mesa_idmesa.",".$this ->recepcionista_idrecepcionista.",0) ";
     }
-    
-    function actualizarEstado(){
-        return "update reserva set
-                estado = " . $this -> estado . "
-                where idreserva=" . $this -> idreserva;
-    }
+
     
     function consultarTodos() {
         return "select idreserva, hora, fecha, cliente.nombre, mesa.idmesa , recepcionista.nombre, reserva.estado
