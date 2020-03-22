@@ -6,7 +6,6 @@ $administrador->consultar();
 if (isset($_POST["registrar"])) {
     $nombre = $_POST["nombre"];
     $precio = $_POST["precio"];
-    $ca = $_REQUEST["Categoria"];
     // recibimos los datos de la imagen
     $nombre_foto = $_FILES['foto']['name'];
     $tipo_foto = $_FILES['foto']['type'];

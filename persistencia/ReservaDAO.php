@@ -15,6 +15,7 @@ class ReservaDAO {
         $this -> fecha = $fecha;
         $this -> cliente_idcliente = $cliente_idcliente;
         $this -> recepcionista_idrecepcionista = $recepcionista_idrecepcionista;
+        $this -> mesa_idmesa = $mesa_idmesa;
         $this -> estado = $estado;
     }
     
@@ -32,7 +33,7 @@ class ReservaDAO {
     
     function registrar(){
         return "INSERT INTO reserva (hora,fecha,cliente_idcliente, mesa_idmesa, recepcionista_idrecepcionista,estado)
-VALUES (".$this -> hora.",".$this -> fecha.",".$this ->cliente_idcliente.",".$this ->mesa_idmesa.",".$this ->recepcionista_idrecepcionista.",0) ";
+                VALUES ('".$this -> hora."','".$this -> fecha."',".$this ->cliente_idcliente.",".$this ->mesa_idmesa.",".$this ->recepcionista_idrecepcionista.",0) ";
     }
     
     function actualizarEstado(){
@@ -55,6 +56,12 @@ VALUES (".$this -> hora.",".$this -> fecha.",".$this ->cliente_idcliente.",".$th
                 cliente_idcliente like '%". $filtro ."%'
                 order by fecha";
         
+    }
+    
+    function ValidarReserva(){    
+        return "SELECT idreserva
+                FROM reserva
+                where hora= '". $this -> hora ."' and fecha= '". $this -> fecha ."' and mesa_idmesa= ". $this -> mesa_idmesa ;
     }
     
    

@@ -69,6 +69,18 @@ class Reserva {
         return $resultados;
     }
     
+    function ValidarReserva(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> reservaDAO -> ValidarReserva());
+        if($this -> conexion -> numFilas() == 0){
+            $this -> conexion -> cerrar();
+            return true;
+        } else {
+            $this -> conexion -> cerrar();
+            return false;
+        }
+    }
+    
     function consultarReservaCliente(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> reservaDAO -> consultarReservaCliente());
@@ -111,8 +123,6 @@ class Reserva {
     function registrar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> reservaDAO -> registrar());
-       
-      
         $this -> conexion -> cerrar();
     }
     

@@ -7,7 +7,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header bg-light">Bienvenido Administrador</div>
+				<div class="card-header bg-dark">Bienvenido Administrador</div>
 				<div class="card-body">
 					<p>Usuario: <?php echo $administrador -> getNombre() . " " . $administrador -> getApellido() ?></p>
 					<p>Correo: <?php echo $administrador -> getCorreo(); ?></p>
