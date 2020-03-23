@@ -84,6 +84,7 @@ class Recepcionista extends Persona {
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> consultarTodos());
+        
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){

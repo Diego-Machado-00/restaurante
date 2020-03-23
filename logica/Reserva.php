@@ -124,6 +124,7 @@ class Reserva {
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> reservaDAO -> registrar());
         $this -> conexion -> cerrar();
+        
     }
     
     function actualizarEstado(){
