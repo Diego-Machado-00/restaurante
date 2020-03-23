@@ -32,7 +32,8 @@ class PedidoDAO {
     
     function actualizarEstado(){
         return "update pedido set
-                estado = '" . $this -> estado . "'
+                estado = '" . $this -> estado . "',
+                chef_idchef = '".$this->chef_idchef."'
                 where idpedido=" . $this -> idpedido;
     }
     function buscarPedido($filtro){

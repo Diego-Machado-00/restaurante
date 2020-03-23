@@ -27,7 +27,7 @@ include 'presentacion/chef/menuChef.php';
 										<th scope="col">Id</th>
 										<th scope="col">Reserva</th>
 										<th scope="col">Estado</th>
-									
+										<th scope="col">Seleccionar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -36,7 +36,8 @@ include 'presentacion/chef/menuChef.php';
         echo "<tr>";
         echo "<td>" . $p-> getIdPedido() . "</td>";
         echo "<td>" . $p-> getReserva() . "</td>";
-        echo "<td><span  id='cambiarEstado" . $p->getIdPedido() . "'  data-toggle='tooltip'  class='tooltipLink' data-placement='left' data-original-title='" . ($p->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ><button  class='fas " . ($p->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "' href='#'></button></span></td>";
+        echo "<td><span class='fas " . ($p->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "'   id='Estado" . $p->getIdPedido() . "'  data-toggle='tooltip'  class='tooltipLink' data-placement='left' data-original-title='" . ($p->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span></td>";
+        echo "<td>" . " <a id='cambiarEstado" . $p->getIdPedido() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($p->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a> </td>";
         echo "</tr>";
     }
     echo "<tr><td colspan='9'>" . count($pedidos) . " registros encontrados</td></tr>"?>	
@@ -66,8 +67,8 @@ $(document).ready(function(){
 $(document).ready(function(){
 	<?php foreach ($pedidos as $p) { ?>
 	$("#cambiarEstado<?php echo $p -> getIdPedido(); ?>").click(function(){
-		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/chef/editarEstadoPedidoAjax.php") . "&idPedido=" . $p -> getIdPedido() . "&estado=" . (($p -> getEstado() == 0)?"1":"0") . "\";\n"; ?>
-		$("#cambiarEstado<?php echo $p ->getIdPedido(); ?>").load(ruta);
+		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/chef/editarEstadoPedidoAjax.php") . "&idPedido=" . $p -> getIdPedido() . "&estado=" . (($p -> getEstado() == 0)?"1":"0") . "&chef=".$chef->getId()."\";\n"; ?>
+		$("#Estado<?php echo $p ->getIdPedido(); ?>").load(ruta);
 	});
 	<?php } ?>
 });
