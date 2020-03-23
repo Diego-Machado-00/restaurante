@@ -33,7 +33,7 @@ class MesaDAO {
     
     function registrar(){
         return "insert into mesa (nombre,numero_personas)
-                value ('". $this -> nombre ."', ". $this -> numero_personas.")";
+                values ('". $this -> nombre ."', ". $this -> numero_personas.")";
         
     }
     

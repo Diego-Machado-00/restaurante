@@ -15,9 +15,9 @@ class PedidoDAO {
     }
     
     function consultar(){
-        return "select idpedido, reserva.idreserva, estado
-                from pedido, chef,reserva
-                where idreserva =" . $this -> reserva_idreserva ;
+        return "select reserva_idreserva, estado
+                from pedido
+                where idpedido =" . $this -> idpedido;
     }
     function consultarTodos(){
         return "select idpedido, reserva_idreserva, estado
@@ -41,6 +41,10 @@ class PedidoDAO {
                 where reserva_idreserva like '%" . $filtro . "%'
                 order by fecha";
         
+    }
+    
+    function registrar(){
+        return "INSERT INTO pedido(reserva_idreserva,estado) VALUES(" . $this->reserva_idreserva . ",". 0 .")";
     }
     
    

@@ -1,13 +1,12 @@
 <?php
 require 'persistencia/Pedido_PlatoDAO.php';
 require_once 'persistencia/Conexion.php';
-
 class Pedido_Plato{
     private $pedido_idpedido;
     private $plato_idplato;
     private $cantidad;
     private $descripcion;
-    private $Pedido_PlatoDAO;
+    private $pedido_PlatoDAO;
     private $conexion;
     
     function getPedido(){
@@ -29,27 +28,27 @@ class Pedido_Plato{
     
     
     function Pedido_Plato($pedido_idpedido="", $plato_idplato="", $cantidad = "", $descripcion = ""){
-        $this -> Pedido_idpedido = $pedido_idpedido;
-        $this -> Plato_idplato = $plato_idplato;
+        $this -> pedido_idpedido = $pedido_idpedido;
+        $this -> plato_idplato = $plato_idplato;
         $this -> cantidad = $cantidad;
         $this -> descripcion = $descripcion;
         $this -> conexion = new Conexion();
-        $this -> Pedido_PlatoDAO = new Pedido_PlatoDAO($pedido_idpedido, $plato_idplato, $cantidad, $descripcion);
+        $this -> pedido_PlatoDAO = new Pedido_PlatoDAO( $pedido_idpedido, $plato_idplato, $cantidad, $descripcion);
     }
     
     function registrar(){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> Pedido_PlatoDAO -> registrar());
+        $this -> conexion -> ejecutar($this -> pedido_PlatoDAO -> registrar());
         $this -> conexion -> cerrar();
     }
     
     function consultarReservaPlato(){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> PedidoPlatoDAO -> consultarReservaPlato());
+        $this -> conexion -> ejecutar($this -> pedido_PlatoDAO -> consultarReservaPlato());
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Pedido_Plato($registro[0], $registro[1], $registro[2],$registro[3], $registro[4], $registro[5], $registro[6]);
+            $resultados[$i] = new Pedido_Plato("",$registro[0], $registro[1], $registro[2]);
             $i++;
         }
         $this -> conexion -> cerrar();
@@ -58,7 +57,7 @@ class Pedido_Plato{
     
     function consultar(){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> Pedido_PlatoDAO -> consultar());
+        $this -> conexion -> ejecutar($this -> pedido_PlatoDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
         $this -> pedido_idpedido = $resultado[0];
         $this -> plato_idplato = $resultado[1];

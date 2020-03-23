@@ -1,5 +1,9 @@
 <?php
 require 'pdf/class.ezpdf.php';
+$pe = new Pedido($_GET("idPedido"));
+$pe -> consultar();
+$reserva = new Reserva($pe->getReserva(), "", "", "", "", "", 0);
+$reserva->actualizarEstado();
 $pedido_p = new Pedido_Plato($_GET("idPedido"));
 $pedidos_p = $pedido_p->consultarReservaPlato();
 $total=0;

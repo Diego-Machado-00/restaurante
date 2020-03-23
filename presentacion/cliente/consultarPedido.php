@@ -1,17 +1,23 @@
 <?php
 $cliente = new Cliente($_SESSION['id']);
-$cliente->consultar();
-$pedido = new Pedido("",$_SESSION['Reserva'],"","");
-$pedido -> registrar();
-$pedido -> consultarId();
-foreach ($_SESSION['cesta'] as $r) {
-    $pe_pl = new Pedido_Plato($pedido->getIdPedido(), $r['idPlato'],  $r['cantidad'],  $r['descripcion']);
-    $pe_pl -> registrar();
+$cliente -> consultar();
+if (isset($_POST["RegistroPedido"])){
+    $pedido = new Pedido("",$_SESSION['Reserva']);
+    $pedido -> registrar();
+    $pedido -> consultarId();
+    $p = $pedido ->getIdPedido();
+    foreach ($_SESSION['cesta'] as $r) {
+        $plato=$r['idPlato'];
+        $cantidad=$r['cantidad'];
+        $descripcion=$r['descripcion'];
+        $pe_pl = new Pedido_Plato($p, $plato,  $cantidad,  $descripcion);
+        $pe_pl -> registrar();
+    }
+    $_SESSION['cesta']=[];
+    $_SESSION['contador']=0;
 }
-$_SESSION['cesta']=[];
-$_SESSION['contador']=0;
-$pedido = new Pedido();
-$pedidos = $pedido -> consultarTodos();
+$pedidoN = new Pedido();
+$pedidosN = $pedidoN -> consultarTodos();
 include 'presentacion/cliente/menuCliente.php';
 ?>
 
@@ -20,7 +26,7 @@ include 'presentacion/cliente/menuCliente.php';
 		<div class="col-12">
 			<div id="resultadosMesa">
 				<div class="card">
-					<div class="card-header bg-secondary text-white">Pedido</div>
+					<div class="card-header bg-secondary text-white">Consultar Pedido</div>
 					<div class="card-body">
 						<div id="resultadosPacientes">
 							<table class="table table-striped table-hover">
@@ -34,7 +40,7 @@ include 'presentacion/cliente/menuCliente.php';
 								</thead>
 								<tbody>
 						<?php
-    foreach ($pedidos as $p) {
+    foreach ($pedidosN as $p) {
         echo "<tr>";
         echo "<td>" . $p->getIdPedido() . "</td>";
         echo "<td>" . $p->getReserva() . "</td>";
@@ -46,7 +52,7 @@ include 'presentacion/cliente/menuCliente.php';
         "</td>";
         echo "</tr>";
     }
-    echo "<tr><td colspan='9'>" . count($pedidos) . " registros encontrados</td></tr>"?>	
+    echo "<tr><td colspan='9'>" . count($pedidosN) . " registros encontrados</td></tr>"?>	
 						</tbody>
 							</table>
 						</div>

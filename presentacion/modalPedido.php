@@ -4,9 +4,9 @@ require_once 'logica/Pedido_Plato.php';
 
 $idPedido = $_GET['idPedido'];
 $pedido = new Pedido($idPedido);
-$pedido->consultar();
+$pedido -> consultar();
 $plato_pedido = new Pedido_Plato($idPedido);
-$platos= $plato_pedido->consultarReservaPlatos();
+$platos= $plato_pedido->consultarReservaPlato();
 
 ?>
 <div class="modal-header">
@@ -19,7 +19,7 @@ $platos= $plato_pedido->consultarReservaPlatos();
 <div class="modal-body">
 	<table class="table table-striped table-hover">
 		<tbody>
-			<tr><th width="20%">Id</th><td><?php echo $pedido -> getIdPedido(); ?></td></tr>		
+			<tr><th width="20%">Id</th><td><?php echo $idPedido; ?></td></tr>		
 			<tr><th width="20%">Reserva</th><td><?php echo $pedido -> getReserva(); ?></td></tr>	
 			<tr><th width="20%">Estado</th><td><span class='fas <?php echo ($pedido->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") ?>' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='<?php echo ($pedido->getEstado() == 0 ? "Inhabilitado" : "Habilitado") ?>' ></span></td></tr>	
 			<tr><th width="20%">Platos</th><td>

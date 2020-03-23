@@ -28,7 +28,7 @@ include 'presentacion/cliente/menuCliente.php';
     					<div>
     					<?php if($_SESSION['cesta']!= NULL){?>
     					<form action="index.php?pid=<?php echo base64_encode("presentacion/cliente/consultarPedido.php")?>" method="post">
-							<button type="submit" name="PDFBuscar" class="btn btn-light">Solicitar Pedido</button>
+							<button type="submit" name="RegistroPedido" class="btn btn-light">Solicitar Pedido</button>
 						</form>	
 						<?php }?>
     					</div>

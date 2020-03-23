@@ -42,9 +42,8 @@ class Pedido {
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> pedidoDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
-        $this -> idpedido = $resultado[0];
-        $this -> reserva_idreserva = $resultado[1];
-        $this -> estado = $resultado[3];
+        $this -> reserva_idreserva = $resultado[0];
+        $this -> estado = $resultado[1];
         $this -> conexion -> cerrar();
     }
     
