@@ -2,14 +2,12 @@
 
 class PedidoDAO {
     private $idpedido;
-    private $descripcion;
     private $reserva_idreserva;
     private $chef_idchef;
     private $estado;
     
-    function PedidoDAO ($idpedido, $descripcion, $reserva_idreserva, $chef_idchef, $estado){
+    function PedidoDAO ($idpedido, $reserva_idreserva, $chef_idchef, $estado){
         $this -> idpedido = $idpedido;
-        $this -> descripcion = $descripcion;
         $this -> reserva_idreserva = $reserva_idreserva;
         $this -> chef_idchef = $chef_idchef;
         $this -> estado = $estado;
@@ -17,9 +15,15 @@ class PedidoDAO {
     }
     
     function consultar(){
-        return "select idpedido, descripcion, reserva_idreserva, chef.nombre, estado
+        return "select idpedido, reserva_idreserva, estado
                 from pedido, chef
-                where idreserva = '" . $this -> idreserva . "' and chef.idchef= chef_idchef";
+                where id_pedido=". $this -> idpedido;
+    }
+    
+    function consultarId(){
+        return "select idpedido
+                from pedido
+                where reserva_idreserva = " . $this -> reserva_idreserva ;
     }
     
     function actualizarEstado(){
@@ -28,6 +32,16 @@ class PedidoDAO {
                 where idpedido=" . $this -> idpedido;
     }
     
+    function registrar(){
+        return "insert into pedido (reserva_idreserva)
+                values (". $this->reserva_idreserva.")";
+    }
+    
+    function consultarTodos(){
+        return "select idpedido, reserva_idreserva, estado
+                from pedido";
+        
+    }
     
 }
 

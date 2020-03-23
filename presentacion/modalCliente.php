@@ -52,4 +52,5 @@ $reservas= $reserva->consultarReservaCliente();
 			
 			</td></tr>
 		</tbody>
+	</table>
 </div>

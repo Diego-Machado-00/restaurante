@@ -10,6 +10,8 @@ if($administrador -> autenticar()){
     if($cliente -> autenticar()){
         if($cliente -> getEstado() != 0 ){
             $_SESSION['id'] = $cliente -> getId();
+            $_SESSION['contador']=0;
+            $_SESSION['cesta']=[];
             header("Location: index.php?pid=" . base64_encode("presentacion/cliente/sesionCliente.php"));
         }else{
             echo'<script type="text/javascript">
