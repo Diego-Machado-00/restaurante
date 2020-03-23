@@ -12,7 +12,11 @@ class FacturaDAO {
         $this -> pedido_idpedido = $pedido_idpedido;
     }
     
-    
+    function registrar(){
+        return "insert into factura
+                (montoFinal, pedido_idpedido)
+                values (" . $this->montoFinal . ", " . $this->pedido_idpedido . ")";
+    }
 }
 
 ?>

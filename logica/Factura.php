@@ -32,6 +32,10 @@ class Factura {
         $this -> facturaDAO = new FacturaDAO($idfactura, $montoFinal, $pedido_idpedido);
     }
     
-    
+    function registrar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> facturaDAO -> registrar());
+        $this -> conexion -> cerrar();
+    }
 
 }

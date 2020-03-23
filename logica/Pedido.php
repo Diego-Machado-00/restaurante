@@ -61,13 +61,19 @@ class Pedido {
         $this -> conexion -> cerrar();
     }
     
+    function actualizarChef(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> pedidoDAO -> actualizarChef());
+        $this -> conexion -> cerrar();
+    }
+    
     function buscarPedido($filtro){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> pedidoDAO -> buscarPedido($filtro));
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Pedido($registro[0], $registro[1], "" , $registro[3]);
+            $resultados[$i] = new Pedido($registro[0], $registro[1], $registro[2] , $registro[3]);
             $i++;
         }
         $this -> conexion -> cerrar();
@@ -83,6 +89,19 @@ class Pedido {
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> pedidoDAO -> consultarTodos());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Pedido($registro[0], $registro[1], $registro[2], $registro[3]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
+    function consultarPedidoChef(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> pedidoDAO -> consultarPedidoChef());
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
