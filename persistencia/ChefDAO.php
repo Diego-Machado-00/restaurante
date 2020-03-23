@@ -18,7 +18,7 @@ class ChefDAO {
     }
     
     function buscarChef($filtro){
-        return "select idchef, nombre, apellido, correo, tarjeraprofesional
+        return "select idchef, nombre, apellido, correo, tarjetaprofesional
                 from chef
                 where  nombre like '%" . $filtro . "%' or apellido like '%" . $filtro . "%'";
     }
