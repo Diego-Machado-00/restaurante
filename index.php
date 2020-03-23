@@ -10,6 +10,7 @@ require 'logica/Mesa.php';
 require 'logica/Pedido.php';
 require 'logica/Plato.php';
 require 'logica/Reserva.php';
+require 'logica/Pedido_Plato.php';
 
 ?>
 <head>

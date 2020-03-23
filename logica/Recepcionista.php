@@ -26,6 +26,20 @@ class Recepcionista extends Persona {
         }
     }
     
+    function SeleccionarRecepcionista(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> recepcionistaDAO -> SeleccionarRecepcionista());
+        if($this -> conexion -> numFilas() == 1){
+            $resultado = $this -> conexion -> extraer();
+            $this -> id = $resultado[0];
+            $this -> conexion -> cerrar();
+            return true;
+        } else {
+            $this -> conexion -> cerrar();
+            return false;
+        }
+    }
+    
     function buscarRecepcionista($filtro){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> recepcionistaDAO -> buscarRecepcionista($filtro));

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-03-2020 a las 04:16:30
+-- Tiempo de generación: 23-03-2020 a las 04:37:23
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -86,7 +86,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `correo`, `clave`, `estado`, `cedula`) VALUES
-(1, 'Homero', 'Simpsons', '10@10.com', '10', 0, 123);
+(1, 'Homero', 'Simpsons', '10@10.com', 'd3d9446802a44259755d38e6d163e820', 1, 123);
 
 -- --------------------------------------------------------
 
@@ -127,10 +127,9 @@ INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
 
 CREATE TABLE `pedido` (
   `idpedido` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL,
   `reserva_idreserva` int(11) NOT NULL,
   `chef_idchef` int(11) NOT NULL,
-  `estado` varchar(45) NOT NULL
+  `estado` varchar(45) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -142,7 +141,8 @@ CREATE TABLE `pedido` (
 CREATE TABLE `pedido_plato` (
   `Pedido_idpedido` int(11) NOT NULL,
   `Plato_idplato` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -155,9 +155,16 @@ CREATE TABLE `plato` (
   `idplato` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `precio` varchar(45) NOT NULL,
-  `categoria_idcategoria` int(11) NOT NULL,
   `foto` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `plato`
+--
+
+INSERT INTO `plato` (`idplato`, `nombre`, `precio`, `foto`) VALUES
+(1, 'Bandeja Paisa', '20000', '2232020033653.jpg'),
+(2, 'Ajiaco', '15000', '2232020034131.jpg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +208,11 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`idreserva`, `hora`, `fecha`, `cliente_idcliente`, `mesa_idmesa`, `recepcionista_idrecepcionista`, `estado`) VALUES
-(1, '05:00:00', '2020-03-21', 1, 1, 1, 0);
+(1, '05:00:00', '2020-03-21', 1, 1, 1, 1),
+(2, '16:00:00', '2020-03-21', 1, 1, 1, 1),
+(3, '18:00:00', '2020-03-22', 1, 1, 1, 0),
+(4, '16:00:00', '2020-03-22', 1, 1, 1, 0),
+(5, '16:00:00', '2020-03-23', 1, 1, 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -307,13 +318,13 @@ ALTER TABLE `mesa`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `plato`
 --
 ALTER TABLE `plato`
-  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcionista`
@@ -325,7 +336,7 @@ ALTER TABLE `recepcionista`
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

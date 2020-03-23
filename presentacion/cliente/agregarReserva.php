@@ -1,7 +1,7 @@
 <?php
 $cliente = new Cliente($_SESSION['id']);
 $cliente->consultar();
-$error = 0;
+$error = -1;
 if (isset($_POST["registrar"])) {
         $fecha = $_POST["fecha"];
         switch($_POST['Hora']){
@@ -26,8 +26,11 @@ if (isset($_POST["registrar"])) {
             default:
                 break;
         }
-      $reserva = new Reserva("", $hora, $fecha, $_SESSION['id'] , $_GET['idmesa'] , 1);
+      $recepcionista = new Recepcionista();
+      $recepcionista-> SeleccionarRecepcionista();
+      $reserva = new Reserva("", $hora, $fecha, $_SESSION['id'] , $_GET['idmesa'] , $recepcionista -> getId());
       if($reserva->ValidarReserva()){
+          $error = 0;
           $reserva->registrar();
          }else{
         $error=1;
@@ -42,7 +45,7 @@ include 'presentacion/cliente/menuCliente.php';
 			<div class="card">
 				<div class="card-header bg-secondary text-white">Agregar Reserva</div>
 				<div class="card-body">
-						<?php if (isset($_POST["agregar"])) { ?>
+						<?php if ($error == 0) { ?>
 						<div class="alert alert-success" role="alert">Mesa Agregada exitosamente.</div>						
 						<?php } else if($error == 1) { ?>
 						<div class="alert alert-danger" role="alert">

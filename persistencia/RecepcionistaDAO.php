@@ -61,6 +61,13 @@ class RecepcionistaDAO {
         
     }
     
+    function SeleccionarRecepcionista(){
+        return "SELECT idrecepcionista 
+        FROM recepcionista
+        ORDER BY RAND()
+        LIMIT 1";
+    }
+    
     
 }
 
