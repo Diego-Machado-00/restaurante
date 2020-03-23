@@ -21,7 +21,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 			<div class="card">
 				<div class="card-header bg-secondary text-white">Consultar Clientes</div>
 				<div class="card-body">
-					<div id="resultadosPacientes">
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
@@ -44,15 +43,16 @@ include 'presentacion/administrador/menuAdministrador.php';
                                     echo "<td>" . $c->getCorreo() . "</td>";
                                     echo "<td><div id=estado" . $c->getId() . "><span class='fas " . ($c->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($c->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span>" . "</div></td>";
                                     echo "<td>" . $c->getCedula(). "</td>";
-                                    echo "<td>" . "<a href='indexAjax.php?pid=". base64_encode("presentacion/modalCliente.php") . "&idCliente=" . $c->getId() . "' data-toggle='modal' data-target='#modalCliente' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
-                                                   <a id='cambiarEstado" . $c->getId() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($c->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a>
-                                                   </td>";
+                                    echo "<td>" . "<a href='indexAjax.php?pid=". base64_encode("presentacion/modalCliente.php") . "&idCliente=" . $c->getId() . "' data-toggle='modal' data-target='#modalCliente' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>";
+                                    if($c -> getEstado()==0){
+                                        echo "<a id='cambiarEstado" . $c->getId() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($c->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a>";
+                                    }
+                                    "</td>";
                                     echo "</tr>";
                                 }
                                     echo "<tr><td colspan='9'>" . count($clientes) . " registros encontrados</td></tr>"?>	
 						</tbody>
 						</table>
-					</div>
 				</div>
 			</div>
 			</div>
@@ -75,7 +75,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 <script type="text/javascript">
 $(document).ready(function(){
 	<?php foreach ($clientes as $c) { ?>
-	$("#cambiarEstado<?php echo $c -> getId(); ?>").click(){
+	$("#cambiarEstado<?php echo $c -> getId(); ?>").click(function(){
 		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/administrador/editarEstadoClienteAjax.php") . "&idCliente=" . $c -> getId() . "&estado=" . (($c -> getEstado() == 0)?"1":"0") . "\";\n"; ?>
 		$("#estado<?php echo $c -> getId(); ?>").load(ruta);
 	});
@@ -91,9 +91,6 @@ $(document).ready(function(){
 	     if(fil.length>=1){
 		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/administrador/consultarClienteAjax.php")."\";\n";?>
 			 $("#resultadosCliente").load(ruta,{fil});
-	     }else{
-		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
-	    	 $("#resultadosCliente").empty();
 	     }
 	
 	});

@@ -21,7 +21,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 			<div class="card">
 					<div class="card-header bg-secondary text-white">Consultar Recepcionista</div>
 					<div class="card-body">
-						<div id="resultadosPacientes">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
@@ -44,7 +43,6 @@ include 'presentacion/administrador/menuAdministrador.php';
     echo "<tr><td colspan='9'>" . count($recepcionistas) . " registros encontrados</td></tr>"?>	
 						</tbody>
 							</table>
-						</div>
 					</div>
 				</div>
 				</div>
@@ -60,9 +58,6 @@ $(document).ready(function(){
 	     if(fil.length>=1){
 		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/administrador/consultarRecepcionistaAjax.php")."\";\n";?>
 			 $("#resultadosRecepcionista").load(ruta,{fil});
-	     }else{
-		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
-	    	 $("#resultadosRecepcionista").empty();
 	     }
 	
 	});

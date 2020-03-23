@@ -2,20 +2,22 @@
 $reserva = new Reserva();
 $reservas = $reserva->buscarReserva($_REQUEST["fil"]);
 ?>
-
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Hora</th>
-			<th scope="col">Fecha</th>
-			<th scope="col">Cliente</th>
-			<th scope="col">Mesa</th>
-			<th scope="col">Recepcionista</th>
-			<th scope="col">Estado</th>
-		</tr>
-	</thead>
-	<tbody>
+<div class="card">
+	<div class="card-header bg-secondary text-white">Consultar Reserva</div>
+	<div class="card-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Hora</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Cliente</th>
+					<th scope="col">Mesa</th>
+					<th scope="col">Recepcionista</th>
+					<th scope="col">Estado</th>
+				</tr>
+			</thead>
+			<tbody>
 						<?php
     foreach ($reservas as $r) {
         echo "<tr>";
@@ -30,4 +32,6 @@ $reservas = $reserva->buscarReserva($_REQUEST["fil"]);
     }
     echo "<tr><td colspan='9'>" . count($reservas) . " registros encontrados</td></tr>"?>	
 						</tbody>
-</table>
+		</table>
+	</div>
+</div>

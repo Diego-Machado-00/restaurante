@@ -16,6 +16,7 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/chef/consultarPedido.php")?>">Pedido</a> 
 				</div></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?pid=<?php echo base64_encode("presentacion/cliente/consultarMesa.php")?>">Mis Pedidos</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a>
 			</li>
 		</ul>

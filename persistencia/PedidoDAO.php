@@ -15,14 +15,13 @@ class PedidoDAO {
     }
     
     function consultar(){
-        return "select idpedido, descripcion, reserva.idreserva, chef.nombre, estado
+        return "select idpedido, reserva.idreserva, estado
                 from pedido, chef,reserva
-                where idreserva = '" . $this -> reserva_idreserva . "' and chef.idchef= chef_idchef";
+                where idreserva =" . $this -> reserva_idreserva ;
     }
     function consultarTodos(){
-        return "select idpedido, descripcion, reserva_idreserva, chef.idchef, estado
-                from pedido,chef
-                order by idpedido";
+        return "select idpedido, reserva_idreserva, estado
+                from pedido";
     }
     
     function consultarId(){
@@ -37,11 +36,9 @@ class PedidoDAO {
                 where idpedido=" . $this -> idpedido;
     }
     function buscarPedido($filtro){
-        return "select  idpedido, descripcion, reserva_idreserva, chef.nombre, estado
-                from pedido,chef
-                where  descripcion like '%" . $filtro . "%' or
-                 reserva_idreserva like '%" . $filtro . "%' or
-                chef.nombre like '%" . $filtro . "%' 
+        return "select  idpedido, reserva_idreserva, estado
+                from pedido
+                where reserva_idreserva like '%" . $filtro . "%'
                 order by fecha";
         
     }

@@ -2,16 +2,18 @@
 $mesa = new Mesa();
 $mesas = $mesa->buscarMesa($_REQUEST["fil"]);
 ?>
-
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Nombre</th>
-			<th scope="col">Numero de Personas</th>
-		</tr>
-	</thead>
-	<tbody>
+<div class="card">
+	<div class="card-header bg-secondary text-white">Consultar Mesa</div>
+	<div class="card-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Numero de Personas</th>
+				</tr>
+			</thead>
+			<tbody>
 						<?php
     foreach ($mesas as $m) {
         echo "<tr>";
@@ -22,4 +24,6 @@ $mesas = $mesa->buscarMesa($_REQUEST["fil"]);
     }
     echo "<tr><td colspan='9'>" . count($mesas) . " registros encontrados</td></tr>"?>	
 						</tbody>
-</table>
+		</table>
+	</div>
+</div>

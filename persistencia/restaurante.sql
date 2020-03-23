@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2020 a las 04:37:23
+-- Tiempo de generación: 23-03-2020 a las 17:15:50
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -63,7 +63,8 @@ CREATE TABLE `chef` (
 --
 
 INSERT INTO `chef` (`idchef`, `nombre`, `apellido`, `correo`, `clave`, `tarjetaprofesional`) VALUES
-(1, 'Gordon', 'Ramsey', '2@2.com', 'c81e728d9d4c2f636f067f89cc14862c', '123');
+(1, 'Gordon', 'Ramsey', '2@2.com', 'c81e728d9d4c2f636f067f89cc14862c', '123'),
+(2, 'jorge', 'rausch', '3@3.com', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', '456');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,10 @@ CREATE TABLE `mesa` (
 --
 
 INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
-(1, 'Mesa 1', 4);
+(1, 'Mesa 1', 4),
+(2, 'Mesa 2', 12),
+(3, 'Mesa 3', 8),
+(4, 'Mesa 4', 2);
 
 -- --------------------------------------------------------
 
@@ -164,7 +168,8 @@ CREATE TABLE `plato` (
 
 INSERT INTO `plato` (`idplato`, `nombre`, `precio`, `foto`) VALUES
 (1, 'Bandeja Paisa', '20000', '2232020033653.jpg'),
-(2, 'Ajiaco', '15000', '2232020034131.jpg');
+(2, 'Ajiaco', '15000', '2232020034131.jpg'),
+(5, 'Fritanga', '20000', '2332020041309.jpg');
 
 -- --------------------------------------------------------
 
@@ -185,7 +190,8 @@ CREATE TABLE `recepcionista` (
 --
 
 INSERT INTO `recepcionista` (`idrecepcionista`, `nombre`, `apellido`, `correo`, `clave`) VALUES
-(1, 'Sylvester', 'Stallone', '1@1.com', 'c4ca4238a0b923820dcc509a6f75849b');
+(1, 'Sylvester', 'Stallone', '1@1.com', 'c4ca4238a0b923820dcc509a6f75849b'),
+(2, 'Bruce', 'Wayne', '4@4.com', 'a87ff679a2f3e71d9181a67b7542122c');
 
 -- --------------------------------------------------------
 
@@ -208,11 +214,12 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`idreserva`, `hora`, `fecha`, `cliente_idcliente`, `mesa_idmesa`, `recepcionista_idrecepcionista`, `estado`) VALUES
-(1, '05:00:00', '2020-03-21', 1, 1, 1, 1),
+(1, '05:00:00', '2020-03-21', 1, 1, 1, 0),
 (2, '16:00:00', '2020-03-21', 1, 1, 1, 1),
 (3, '18:00:00', '2020-03-22', 1, 1, 1, 0),
 (4, '16:00:00', '2020-03-22', 1, 1, 1, 0),
-(5, '16:00:00', '2020-03-23', 1, 1, 1, 0);
+(5, '16:00:00', '2020-03-23', 1, 1, 1, 0),
+(6, '21:00:00', '2020-03-23', 1, 4, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -300,7 +307,7 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `chef`
 --
 ALTER TABLE `chef`
-  MODIFY `idchef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idchef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
@@ -312,7 +319,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `idmesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idmesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
@@ -324,19 +331,19 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `plato`
 --
 ALTER TABLE `plato`
-  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcionista`
 --
 ALTER TABLE `recepcionista`
-  MODIFY `idrecepcionista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrecepcionista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

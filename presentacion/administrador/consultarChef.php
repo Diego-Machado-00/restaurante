@@ -21,7 +21,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 				<div class="card">
 					<div class="card-header bg-secondary text-white">Consultar Chef</div>
 					<div class="card-body">
-						<div id="resultadosPacientes">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
@@ -46,13 +45,13 @@ include 'presentacion/administrador/menuAdministrador.php';
     echo "<tr><td colspan='9'>" . count($chefs) . " registros encontrados</td></tr>"?>	
 						</tbody>
 							</table>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -62,9 +61,6 @@ $(document).ready(function(){
 	     if(fil.length>=1){
 		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/administrador/consultarChefAjax.php")."\";\n";?>
 			 $("#resultadosChef").load(ruta,{fil});
-	     }else{
-		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
-	    	 $("#resultadosChef").empty();
 	     }
 	
 	});

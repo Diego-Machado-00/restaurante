@@ -21,7 +21,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 			<div class="card">
 					<div class="card-header bg-secondary text-white">Consultar Plato</div>
 					<div class="card-body">
-						<div id="resultadosPacientes">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
@@ -44,7 +43,6 @@ include 'presentacion/administrador/menuAdministrador.php';
     echo "<tr><td colspan='9'>" . count($platos) . " registros encontrados</td></tr>"?>	
 						</tbody>
 							</table>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -58,11 +56,8 @@ $(document).ready(function(){
 	     var fil = $("#Filtro").val();
 	     console.log(fil);
 	     if(fil.length>=1){
-		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/administrador/consultarPlatosAjax.php")."\";\n";?>
+		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/administrador/consultarPlatoAjax.php")."\";\n";?>
 			 $("#resultadosPlato").load(ruta,{fil});
-	     }else{
-		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
-	    	 $("#resultadosPlato").empty();
 	     }
 	
 	});

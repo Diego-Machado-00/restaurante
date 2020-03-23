@@ -1,7 +1,7 @@
 <?php
 $administrador = new Administrador($_SESSION['id']);
 $administrador->consultar();
-
+$error = -1;
 if (isset($_POST["registrar"])) {
     $nombre = $_POST["nombre"];
     switch($_POST['Numero'])
@@ -24,6 +24,7 @@ if (isset($_POST["registrar"])) {
     }
     $mesa = new Mesa("", $nombre, $numero);
     $mesa->registrar();
+    $error=1;
 }
 include 'presentacion/administrador/menuAdministrador.php';
 ?>
@@ -34,11 +35,8 @@ include 'presentacion/administrador/menuAdministrador.php';
 			<div class="card">
 				<div class="card-header bg-secondary text-white">Registro Mesa</div>
 				<div class="card-body">
-						<?php
-    if (isset($_POST["agregar"])) {
-        ?>
-						<div class="alert alert-success" role="alert">Mesa Agregada
-						exitosamente.</div>						
+						<?php if($error==1){?>
+						<div class="alert alert-success" role="alert">Mesa Agregada exitosamente.</div>						
 						<?php } ?>
 						<form action=<?php echo "index.php?pid=" . base64_encode("presentacion/administrador/agregarMesa.php")?>
 						method="post">

@@ -17,6 +17,12 @@ class ChefDAO {
         $this->tarjetaprofesional = $tarjetaprofesional;
     }
     
+    function buscarChef($filtro){
+        return "select idchef, nombre, apellido, correo, tarjeraprofesional
+                from chef
+                where  nombre like '%" . $filtro . "%' or apellido like '%" . $filtro . "%'";
+    }
+    
     function autenticar(){
         return "select idchef from chef
                 where correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
@@ -29,7 +35,7 @@ class ChefDAO {
     }
     
     function consultar() {
-        return "select idchef,nombre, apellido, correo,  tarjetaprofesional
+        return "select nombre, apellido, correo,  tarjetaprofesional
                 from chef
                 where idchef =" . $this -> idchef;
     }
@@ -55,11 +61,4 @@ class ChefDAO {
 
     }
     
-    function buscarChef($filtro){
-        return "select idchef,nombre, apellido, correo, tarjeraprofesional
-                from chef
-                where  nombre like '%" . $filtro . "%' or
-                apellido like '%" . $filtro . "%'";
-        
-    }
 }

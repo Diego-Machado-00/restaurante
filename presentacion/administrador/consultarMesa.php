@@ -21,7 +21,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 				<div class="card">
 					<div class="card-header bg-secondary text-white">Consultar Mesa</div>
 					<div class="card-body">
-						<div id="resultadosPacientes">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
@@ -43,7 +42,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 						</tbody>
 							</table>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -58,9 +56,6 @@ $(document).ready(function(){
 	     if(fil.length>=1){
 		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/administrador/consultarMesaAjax.php")."\";\n";?>
 			 $("#resultadosMesa").load(ruta,{fil});
-	     }else{
-		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
-	    	 $("#resultadosMesa").empty();
 	     }
 	
 	});

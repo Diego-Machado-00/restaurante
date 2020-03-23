@@ -21,7 +21,6 @@ include 'presentacion/recepcionista/menuRecepcionista.php';
 			<div class="card">
 					<div class="card-header bg-secondary text-white">Consultar Reserva</div>
 					<div class="card-body">
-						<div id="resultadosReserva">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
@@ -53,7 +52,6 @@ include 'presentacion/recepcionista/menuRecepcionista.php';
     echo "<tr><td colspan='9'>" . count($reservas) . " registros encontrados</td></tr>"?>	
 						</tbody>
 							</table>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -69,9 +67,6 @@ $(document).ready(function(){
 	     if(fil.length>=1){
 		     <?php echo "var ruta = \"indexAjax.php?pid=". base64_encode("presentacion/recepcionista/consultarReservaAjax.php")."\";\n";?>
 			 $("#resultadosReserva").load(ruta,{fil});
-	     }else{
-		     //$("#resultadosPaciente").html("<tbody><tr><td colspan='9'>0 registros encontrados</td></tr></tbody>");
-	    	 $("#resultadosReserva").empty();
 	     }
 	
 	});
@@ -80,10 +75,9 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){
 	<?php foreach ($reservas as $r) { ?>
-	$("#cambiarEstado<?php echo $r -> getId(); ?>").click(function(e){
-		e.preventDefault();
+	$("#cambiarEstado<?php echo $r -> getIdreserva(); ?>").click(function(){
 		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/recepcionista/editarEstadoReservaAjax.php") . "&idReserva=" . $r -> getIdreserva() . "&estado=" . (($r -> getEstado() == 0)?"1":"0") ."\";\n"; ?>
-		$("#estado<?php echo $r -> getId(); ?>").load(ruta);
+		$("#estado<?php echo $r -> getIdreserva(); ?>").load(ruta);
 	});
 	<?php } ?>
 });

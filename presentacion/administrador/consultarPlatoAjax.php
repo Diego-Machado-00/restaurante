@@ -2,15 +2,18 @@
 $plato = new Plato();
 $platos = $plato->buscarPlato($_REQUEST["fil"]);
 ?>
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Nombre</th>
-			<th scope="col">Precio</th>
-		</tr>
-	</thead>
-	<tbody>
+<div class="card">
+	<div class="card-header bg-secondary text-white">Consultar Plato</div>
+	<div class="card-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Precio</th>
+				</tr>
+			</thead>
+			<tbody>
 						<?php
     foreach ($platos as $p) {
         echo "<tr>";
@@ -22,5 +25,6 @@ $platos = $plato->buscarPlato($_REQUEST["fil"]);
     }
     echo "<tr><td colspan='9'>" . count($platos) . " registros encontrados</td></tr>"?>	
 						</tbody>
-</table>
-
+		</table>
+	</div>
+</div>

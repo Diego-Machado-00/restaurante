@@ -55,37 +55,25 @@ class Pedido {
         $this -> idpedido = $resultado[0];
         $this -> conexion -> cerrar();
     }
-    function consultarTodos(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> pedidoDAO -> consultarTodos());
-        $resultados = array();
-        $i=0;
-        while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Pedido($registro[0], $registro[1], $registro[2], $registro[3] ,$registro[4]);
-            $i++;
-        }
-        $this -> conexion -> cerrar();
-        return $resultados;
-    }
+
     function actualizarEstado(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> pedidoDAO -> actualizarEstado());
         $this -> conexion -> cerrar();
     }
+    
     function buscarPedido($filtro){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> pedidoDAO -> buscarPedido($filtro));
         $resultados = array();
         $i=0;
         while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Pedido($registro[0], $registro[1], $registro[2], $registro[3] , $registro[4]);
+            $resultados[$i] = new Pedido($registro[0], $registro[1], "" , $registro[3]);
             $i++;
         }
         $this -> conexion -> cerrar();
         return $resultados;
     }
-    
- 
     
     function registrar(){
         $this -> conexion -> abrir();

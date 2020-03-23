@@ -7,7 +7,6 @@ $pedidos = $pedido->buscarPedido($_REQUEST["fil"]);
 	<thead>
 		<tr>
 			<th scope="col">Id</th>
-				<th scope="col">Descripcion</th>
 				<th scope="col">Reserva</th>
 				<th scope="col">Estado</th>
 									
