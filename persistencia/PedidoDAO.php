@@ -17,8 +17,8 @@ class PedidoDAO {
     }
     
     function consultar(){
-        return "select idpedido, descripcion, reserva_idreserva, chef.nombre, estado
-                from pedido, chef
+        return "select idpedido, descripcion, reserva.idreserva, chef.nombre, estado
+                from pedido, chef,reserva
                 where idreserva = '" . $this -> reserva_idreserva . "' and chef.idchef= chef_idchef";
     }
     function consultarTodos(){

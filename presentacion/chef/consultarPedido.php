@@ -36,7 +36,7 @@ include 'presentacion/chef/menuChef.php';
 						<?php
 						foreach ($pedidos as $p) {
         echo "<tr>";
-        
+        $p ->consultar();
         echo "<td>" . $p-> getIdPedido() . "</td>";
         echo "<td>" . $p-> getDescripcion() . "</td>";
         echo "<td>" . $p-> getReserva() . "</td>";
