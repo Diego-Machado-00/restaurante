@@ -65,6 +65,12 @@ class ReservaDAO {
                 where hora= '". $this -> hora ."' and fecha= '". $this -> fecha ."' and mesa_idmesa= ". $this -> mesa_idmesa ;
     }
     
+    function consultarReserva(){
+        return "select fecha,count(idreserva)
+                from reserva 
+                where fecha = fecha
+                group by fecha";
+    }
    
 }
 

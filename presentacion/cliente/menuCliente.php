@@ -18,6 +18,7 @@
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/cliente/consultarPedido.php")?>">Pedido</a> 
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="index.php?pid=<?php echo base64_encode("presentacion/cliente/carritoReserva.php")?>"><i class="fas fa-cart-arrow-down"></i> Carrito</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?pid=<?php echo base64_encode("presentacion/cliente/consultarGraficos.php")?>">Acerca del Restaurante</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a>
 			</li>
 		</ul>

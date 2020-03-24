@@ -29,5 +29,12 @@ class Pedido_PlatoDAO {
                 where Pedido_idpedido = " . $this -> pedido_idpedido;
     }
     
+    function consultarPlatoVendido(){
+        return "select n.nombre,  Sum(p.cantidad) AS Expr1
+                from pedido_plato p, plato n
+                where p.Plato_idplato = p.Plato_idplato and p.Plato_idplato = n.idplato
+                group by p.Plato_idplato";
+    }
+    
     
 }
