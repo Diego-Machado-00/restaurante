@@ -78,7 +78,8 @@ $(document).ready(function(){
 	$("#EliminarCesta<?php echo $r['idCesta']; ?>").click(function(){
 		<?php 
 		echo "hola";
-		/* $_SESSION['cesta'][$r['idCesta']]=[]; */
+		/*$_SESSION['cesta'][$r['idCesta']]=[];*/
+		/*header("Location: index.php?pid=" . base64_encode("presentacion/cliente/carritoReserva.php"));*/
 		?>
 	});
 	<?php } ?>
