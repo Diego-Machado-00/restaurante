@@ -13,8 +13,8 @@ if (isset($_POST["RegistroPedido"])){
         $pe_pl = new Pedido_Plato($p, $plato,  $cantidad,  $descripcion);
         $pe_pl -> registrar();
     }
-    $_SESSION['cesta']=[];
-    $_SESSION['contador']=0;
+   $_SESSION['cesta']=[];
+   $_SESSION['contador']=0;
 }
 $pedidoN = new Pedido();
 $pedidosN = $pedidoN -> consultarTodos();
