@@ -161,6 +161,20 @@ class Reserva {
         return $resultados;
     }
     
+    function consultarDia(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> reservaDAO -> consultarDia());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i][0] = $registro[0];
+            $resultados[$i][1] = $registro[1];
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
 }
 
 ?>

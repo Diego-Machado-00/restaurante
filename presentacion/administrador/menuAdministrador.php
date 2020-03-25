@@ -19,6 +19,7 @@
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarReserva.php")?>">Reserva</a>
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarMesa.php")?>">Mesa</a>
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarPlato.php")?>">Plato</a>
+					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarGraficos.php")?>">Graficos</a>
 				</div></li>
 				
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"

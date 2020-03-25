@@ -76,7 +76,11 @@ class ReservaDAO {
         return "select fecha,count(idreserva)
                 from reserva 
                 where fecha = fecha
-                order by fecha DESC";
+                group by fecha ";
+    }
+    
+    function consultarDia(){
+        return " SELECT DAYNAME(fecha), COUNT(idreserva) FROM reserva WHERE DAYNAME(fecha) = DAYNAME(fecha) group by DAYNAME(fecha) ";
     }
    
 }
