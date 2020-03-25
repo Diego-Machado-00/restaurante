@@ -1,411 +1,244 @@
--- phpMyAdmin SQL Dump
--- version 4.9.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2020 a las 23:41:25
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `restaurante`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `administrador`
---
-
-CREATE TABLE `administrador` (
-  `idadministrador` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `clave` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `administrador`
---
-
-INSERT INTO `administrador` (`idadministrador`, `nombre`, `apellido`, `correo`, `clave`) VALUES
-(1, 'Diego', 'Machado', '100@100.com', 'f899139df5e1059396431415e770c6dd');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `chef`
---
-
-CREATE TABLE `chef` (
-  `idchef` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `clave` varchar(45) NOT NULL,
-  `tarjetaprofesional` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `chef`
---
-
-INSERT INTO `chef` (`idchef`, `nombre`, `apellido`, `correo`, `clave`, `tarjetaprofesional`) VALUES
-(1, 'Gordon', 'Ramsey', '2@2.com', 'c81e728d9d4c2f636f067f89cc14862c', '123'),
-(2, 'jorge', 'rausch', '3@3.com', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', '456');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cliente`
---
-
-CREATE TABLE `cliente` (
-  `idcliente` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `clave` varchar(45) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 0,
-  `cedula` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `correo`, `clave`, `estado`, `cedula`) VALUES
-(1, 'Homero', 'Simpsons', '10@10.com', 'd3d9446802a44259755d38e6d163e820', 1, 123);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `factura`
---
-
-CREATE TABLE `factura` (
-  `idfactura` int(10) UNSIGNED NOT NULL,
-  `montoFinal` double NOT NULL,
-  `pedido_idpedido` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `factura`
---
-
-INSERT INTO `factura` (`idfactura`, `montoFinal`, `pedido_idpedido`) VALUES
-(1, 40000, 68),
-(2, 40000, 68);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `mesa`
---
-
-CREATE TABLE `mesa` (
-  `idmesa` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `numero_personas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `mesa`
---
-
-INSERT INTO `mesa` (`idmesa`, `nombre`, `numero_personas`) VALUES
-(1, 'Mesa 1', 4),
-(2, 'Mesa 2', 12),
-(3, 'Mesa 3', 8),
-(4, 'Mesa 4', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedido`
---
-
-CREATE TABLE `pedido` (
-  `idpedido` int(11) NOT NULL,
-  `reserva_idreserva` int(11) NOT NULL,
-  `chef_idchef` int(11) DEFAULT NULL,
-  `estado` varchar(45) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`idpedido`, `reserva_idreserva`, `chef_idchef`, `estado`) VALUES
-(68, 2, 1, '1');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedido_plato`
---
-
-CREATE TABLE `pedido_plato` (
-  `Pedido_idpedido` int(11) NOT NULL,
-  `Plato_idplato` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `pedido_plato`
---
-
-INSERT INTO `pedido_plato` (`Pedido_idpedido`, `Plato_idplato`, `cantidad`, `descripcion`) VALUES
-(68, 1, 2, 'sin platano');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `plato`
---
-
-CREATE TABLE `plato` (
-  `idplato` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `precio` varchar(45) NOT NULL,
-  `foto` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `plato`
---
-
-INSERT INTO `plato` (`idplato`, `nombre`, `precio`, `foto`) VALUES
-(1, 'Bandeja Paisa', '20000', '2232020033653.jpg'),
-(2, 'Ajiaco', '15000', '2232020034131.jpg'),
-(5, 'Fritanga', '20000', '2332020041309.jpg');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `recepcionista`
---
-
-CREATE TABLE `recepcionista` (
-  `idrecepcionista` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `clave` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `recepcionista`
---
-
-INSERT INTO `recepcionista` (`idrecepcionista`, `nombre`, `apellido`, `correo`, `clave`) VALUES
-(1, 'Sylvester', 'Stallone', '1@1.com', 'c4ca4238a0b923820dcc509a6f75849b'),
-(2, 'Bruce', 'Wayne', '4@4.com', 'a87ff679a2f3e71d9181a67b7542122c');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `reserva`
---
-
-CREATE TABLE `reserva` (
-  `idreserva` int(11) NOT NULL,
-  `hora` time NOT NULL,
-  `fecha` date NOT NULL,
-  `cliente_idcliente` int(11) NOT NULL,
-  `mesa_idmesa` int(11) NOT NULL,
-  `recepcionista_idrecepcionista` int(11) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `reserva`
---
-
-INSERT INTO `reserva` (`idreserva`, `hora`, `fecha`, `cliente_idcliente`, `mesa_idmesa`, `recepcionista_idrecepcionista`, `estado`) VALUES
-(1, '05:00:00', '2020-03-21', 1, 1, 1, 0),
-(2, '16:00:00', '2020-03-21', 1, 1, 1, 0),
-(3, '18:00:00', '2020-03-22', 1, 1, 1, 0),
-(4, '16:00:00', '2020-03-22', 1, 1, 1, 0),
-(5, '16:00:00', '2020-03-23', 1, 1, 1, 0),
-(6, '21:00:00', '2020-03-23', 1, 4, 1, 0);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`idadministrador`);
-
---
--- Indices de la tabla `chef`
---
-ALTER TABLE `chef`
-  ADD PRIMARY KEY (`idchef`);
-
---
--- Indices de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`idcliente`);
-
---
--- Indices de la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD PRIMARY KEY (`idfactura`),
-  ADD KEY `fk_Factura_Pedido1_idx` (`pedido_idpedido`);
-
---
--- Indices de la tabla `mesa`
---
-ALTER TABLE `mesa`
-  ADD PRIMARY KEY (`idmesa`);
-
---
--- Indices de la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`idpedido`),
-  ADD KEY `fk_Pedido_Reserva1_idx` (`reserva_idreserva`),
-  ADD KEY `fk_Pedido_Chef1_idx` (`chef_idchef`);
-
---
--- Indices de la tabla `pedido_plato`
---
-ALTER TABLE `pedido_plato`
-  ADD PRIMARY KEY (`Pedido_idpedido`,`Plato_idplato`),
-  ADD KEY `fk_Pedido_has_Plato_Plato1_idx` (`Plato_idplato`),
-  ADD KEY `fk_Pedido_has_Plato_Pedido1_idx` (`Pedido_idpedido`);
-
---
--- Indices de la tabla `plato`
---
-ALTER TABLE `plato`
-  ADD PRIMARY KEY (`idplato`);
-
---
--- Indices de la tabla `recepcionista`
---
-ALTER TABLE `recepcionista`
-  ADD PRIMARY KEY (`idrecepcionista`);
-
---
--- Indices de la tabla `reserva`
---
-ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`idreserva`),
-  ADD KEY `fk_Reserva_Cliente1_idx` (`cliente_idcliente`),
-  ADD KEY `fk_Reserva_Mesa1_idx` (`mesa_idmesa`),
-  ADD KEY `fk_Reserva_Recepcionista1_idx` (`recepcionista_idrecepcionista`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  MODIFY `idadministrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `chef`
---
-ALTER TABLE `chef`
-  MODIFY `idchef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `factura`
---
-ALTER TABLE `factura`
-  MODIFY `idfactura` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `mesa`
---
-ALTER TABLE `mesa`
-  MODIFY `idmesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `pedido`
---
-ALTER TABLE `pedido`
-  MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
---
--- AUTO_INCREMENT de la tabla `plato`
---
-ALTER TABLE `plato`
-  MODIFY `idplato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `recepcionista`
---
-ALTER TABLE `recepcionista`
-  MODIFY `idrecepcionista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `reserva`
---
-ALTER TABLE `reserva`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD CONSTRAINT `fk_Factura_Pedido1` FOREIGN KEY (`pedido_idpedido`) REFERENCES `pedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `fk_Pedido_Chef1` FOREIGN KEY (`chef_idchef`) REFERENCES `chef` (`idchef`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Pedido_Reserva1` FOREIGN KEY (`reserva_idreserva`) REFERENCES `reserva` (`idreserva`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `pedido_plato`
---
-ALTER TABLE `pedido_plato`
-  ADD CONSTRAINT `fk_Pedido_has_Plato_Pedido1` FOREIGN KEY (`Pedido_idpedido`) REFERENCES `pedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Pedido_has_Plato_Plato1` FOREIGN KEY (`Plato_idplato`) REFERENCES `plato` (`idplato`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `reserva`
---
-ALTER TABLE `reserva`
-  ADD CONSTRAINT `fk_Reserva_Cliente1` FOREIGN KEY (`cliente_idcliente`) REFERENCES `cliente` (`idcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Reserva_Mesa1` FOREIGN KEY (`mesa_idmesa`) REFERENCES `mesa` (`idmesa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Reserva_Recepcionista1` FOREIGN KEY (`recepcionista_idrecepcionista`) REFERENCES `recepcionista` (`idrecepcionista`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- MySQL Script generated by MySQL Workbench
+-- Sun Mar  8 16:41:20 2020
+-- Model: New Model    Version: 1.0
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema restaurante
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema restaurante
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `restaurante` DEFAULT CHARACTER SET utf8 ;
+USE `restaurante` ;
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Mesa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Mesa` (
+  `idmesa` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `numero_personas` INT NOT NULL,
+  PRIMARY KEY (`idmesa`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Recepcionista`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Recepcionista` (
+  `idrecepcionista` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `clave` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idrecepcionista`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Cliente` (
+  `idcliente` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `clave` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idcliente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Reserva`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Reserva` (
+  `idreserva` INT NOT NULL AUTO_INCREMENT,
+  `hora` TIME NOT NULL,
+  `fecha` DATE NOT NULL,
+  `Cliente_idcliente` INT NOT NULL,
+  `Mesa_idmesa` INT NOT NULL,
+  `Recepcionista_idrecepcionista` INT NOT NULL,
+  `estado` INT NOT NULL,
+  PRIMARY KEY (`idreserva`),
+  INDEX `fk_Reserva_Cliente1_idx` (`Cliente_idcliente` ASC) ,
+  INDEX `fk_Reserva_Mesa1_idx` (`Mesa_idmesa` ASC) ,
+  INDEX `fk_Reserva_Recepcionista1_idx` (`Recepcionista_idrecepcionista` ASC) ,
+  CONSTRAINT `fk_Reserva_Cliente1`
+    FOREIGN KEY (`Cliente_idcliente`)
+    REFERENCES `restaurante`.`Cliente` (`idcliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Reserva_Mesa1`
+    FOREIGN KEY (`Mesa_idmesa`)
+    REFERENCES `restaurante`.`Mesa` (`idmesa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Reserva_Recepcionista1`
+    FOREIGN KEY (`Recepcionista_idrecepcionista`)
+    REFERENCES `restaurante`.`Recepcionista` (`idrecepcionista`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Pedido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Pedido` (
+  `idpedido` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `Reserva_idreserva` INT NOT NULL,
+  `cantidad` INT NOT NULL,
+  PRIMARY KEY (`idpedido`),
+  INDEX `fk_Pedido_Reserva1_idx` (`Reserva_idreserva` ASC) ,
+  CONSTRAINT `fk_Pedido_Reserva1`
+    FOREIGN KEY (`Reserva_idreserva`)
+    REFERENCES `restaurante`.`Reserva` (`idreserva`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Chef`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Chef` (
+  `idchef` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `clave` VARCHAR(45) NOT NULL,
+  `tarjetaprofesional` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idchef`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Categoria` (
+  `idcategoria` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idcategoria`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Plato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Plato` (
+  `idplato` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `precio` VARCHAR(45) NOT NULL,
+  `Chef_idchef` INT NOT NULL,
+  `Categoria_idcategoria` INT NOT NULL,
+  PRIMARY KEY (`idplato`),
+  INDEX `fk_Plato_Chef1_idx` (`Chef_idchef` ASC) ,
+  INDEX `fk_Plato_Categoria1_idx` (`Categoria_idcategoria` ASC) ,
+  CONSTRAINT `fk_Plato_Chef1`
+    FOREIGN KEY (`Chef_idchef`)
+    REFERENCES `restaurante`.`Chef` (`idchef`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Plato_Categoria1`
+    FOREIGN KEY (`Categoria_idcategoria`)
+    REFERENCES `restaurante`.`Categoria` (`idcategoria`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Ingrediente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Ingrediente` (
+  `idingrediente` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idingrediente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Factura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Factura` (
+  `idfactura` INT UNSIGNED NOT NULL,
+  `montoFinal` DOUBLE NOT NULL,
+  `Pedido_idpedido` INT NOT NULL,
+  PRIMARY KEY (`idfactura`),
+  INDEX `fk_Factura_Pedido1_idx` (`Pedido_idpedido` ASC) ,
+  CONSTRAINT `fk_Factura_Pedido1`
+    FOREIGN KEY (`Pedido_idpedido`)
+    REFERENCES `restaurante`.`Pedido` (`idpedido`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Administrador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Administrador` (
+  `idadministrador` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `clave` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idadministrador`))
+ENGINE = InnoDB;
+
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Pedido_Plato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Pedido_Plato` (
+  `Pedido_idpedido` INT NOT NULL,
+  `Plato_idplato` INT NOT NULL,
+  PRIMARY KEY (`Pedido_idpedido`, `Plato_idplato`),
+  INDEX `fk_Pedido_has_Plato_Plato1_idx` (`Plato_idplato` ASC) ,
+  INDEX `fk_Pedido_has_Plato_Pedido1_idx` (`Pedido_idpedido` ASC) ,
+  CONSTRAINT `fk_Pedido_has_Plato_Pedido1`
+    FOREIGN KEY (`Pedido_idpedido`)
+    REFERENCES `restaurante`.`Pedido` (`idpedido`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pedido_has_Plato_Plato1`
+    FOREIGN KEY (`Plato_idplato`)
+    REFERENCES `restaurante`.`Plato` (`idplato`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `restaurante`.`Plato_Ingrediente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `restaurante`.`Plato_Ingrediente` (
+  `Plato_idplato` INT NOT NULL,
+  `Ingrediente_idingrediente` INT NOT NULL,
+  PRIMARY KEY (`Plato_idplato`, `Ingrediente_idingrediente`),
+  INDEX `fk_Plato_has_Ingrediente_Ingrediente1_idx` (`Ingrediente_idingrediente` ASC) ,
+  INDEX `fk_Plato_has_Ingrediente_Plato1_idx` (`Plato_idplato` ASC) ,
+  CONSTRAINT `fk_Plato_has_Ingrediente_Plato1`
+    FOREIGN KEY (`Plato_idplato`)
+    REFERENCES `restaurante`.`Plato` (`idplato`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Plato_has_Ingrediente_Ingrediente1`
+    FOREIGN KEY (`Ingrediente_idingrediente`)
+    REFERENCES `restaurante`.`Ingrediente` (`idingrediente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
