@@ -46,7 +46,7 @@ include 'presentacion/cliente/menuCliente.php';
 				<div class="card-header bg-secondary text-white">Agregar Reserva</div>
 				<div class="card-body">
 						<?php if ($error == 0) { ?>
-						<div class="alert alert-success" role="alert">Mesa Agregada exitosamente.</div>						
+						<div class="alert alert-success" role="alert">Reserva Agregada exitosamente.</div>						
 						<?php } else if($error == 1) { ?>
 						<div class="alert alert-danger" role="alert">
 							Esta mesa ya esta reservada para esta fecha y hora

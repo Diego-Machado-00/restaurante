@@ -41,7 +41,14 @@ class ReservaDAO {
         return "select idreserva, hora, fecha, cliente.nombre, mesa.idmesa , recepcionista.nombre, reserva.estado
                 from reserva,cliente,mesa,recepcionista
                 where cliente.idcliente = cliente_idcliente and mesa.idmesa=reserva.mesa_idmesa and recepcionista.idrecepcionista= reserva.recepcionista_idrecepcionista
-                order by fecha ASC";
+                order by fecha DESC";
+    }
+    
+    function consultarRecepcionista() {
+        return "select idreserva, hora, fecha, cliente.nombre, mesa.idmesa , recepcionista_idrecepcionista, reserva.estado
+                from reserva,cliente,mesa
+                where cliente.idcliente = cliente_idcliente and mesa.idmesa=reserva.mesa_idmesa and reserva.recepcionista_idrecepcionista=". $this->recepcionista_idrecepcionista. "
+                order by fecha DESC";
     }
     
     function buscarReserva($filtro){
@@ -50,7 +57,7 @@ class ReservaDAO {
                 where  fecha like '%" . $filtro . "%' or
                 hora like '%" . $filtro . "%' or
                 cliente_idcliente like '%". $filtro ."%'
-                order by fecha ASC";
+                order by fecha DESC";
         
     }
     function actualizarEstado(){
@@ -69,7 +76,7 @@ class ReservaDAO {
         return "select fecha,count(idreserva)
                 from reserva 
                 where fecha = fecha
-                group by fecha";
+                order by fecha DESC";
     }
    
 }

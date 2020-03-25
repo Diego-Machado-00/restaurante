@@ -28,7 +28,7 @@ class ClienteDAO {
     function existeCorreo(){
         return "SELECT idcliente
                 FROM cliente
-                where correo= ALL(
+                where correo = '" . $this->correo . "' and correo= ALL(
 	               SELECT idrecepcionista
 	               FROM recepcionista
 	               where correo = ALL(

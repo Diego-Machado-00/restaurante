@@ -4,7 +4,7 @@ class Conexion {
     private $resultado;
     public function abrir(){
         //$this -> mysqli = new mysqli(servidor, usuario, contraseña, bd, puerto);
-        $this -> mysqli = new mysqli("localhost", "root", "", "restaurante", 3310);
+        $this -> mysqli = new mysqli("localhost", "root", "", "restaurante", 3306);
         $this -> mysqli -> set_charset("utf8");
     }
     public function ultimoId(){

@@ -26,8 +26,7 @@ class MesaDAO {
     function buscarMesa($filtro){
         return "select idmesa,nombre, numero_personas
                 from mesa
-                where  idmesa like '%" . $filtro . "%' or
-                nombre like '%" . $filtro . "%'";
+                where  idmesa like '%" . $filtro . "%' or nombre like '%" . $filtro . "%'";
         
     }
     

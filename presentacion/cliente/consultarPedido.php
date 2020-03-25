@@ -13,6 +13,8 @@ if (isset($_POST["RegistroPedido"])){
         $pe_pl = new Pedido_Plato($p, $plato,  $cantidad,  $descripcion);
         $pe_pl -> registrar();
     }
+    $reserva = new Reserva($_SESSION['Reserva'], "", "", "", "", "", 0);
+    $reserva -> actualizarEstado();
    $_SESSION['cesta']=[];
    $_SESSION['contador']=0;
 }

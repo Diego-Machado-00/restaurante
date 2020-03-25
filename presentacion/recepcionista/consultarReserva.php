@@ -1,8 +1,8 @@
 <?php
 $recepcionista = new Recepcionista($_SESSION['id']);
 $recepcionista->consultar();
-$reserva = new Reserva();
-$reservas = $reserva->consultarTodos();
+$reserva = new Reserva("","","","","", $recepcionista -> getId());
+$reservas = $reserva->consultarRecepcionista();
 include 'presentacion/recepcionista/menuRecepcionista.php';
 ?>
 <div class="container mt-4">

@@ -1,6 +1,5 @@
 <?php
 $c = new Chef();
-echo $_REQUEST["fil"];
 $filtro = $_REQUEST["fil"];
 $chefs = $c -> buscarChef($filtro);
 ?>

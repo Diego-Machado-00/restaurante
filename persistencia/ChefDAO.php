@@ -43,7 +43,7 @@ class ChefDAO {
     function existeCorreo(){
         return "SELECT idchef
                 FROM chef
-                where correo= ALL(
+                where correo = '" . $this->correo . "' and correo= ALL(
 	               SELECT idrecepcionista
 	               FROM recepcionista
 	               where correo = ALL(
