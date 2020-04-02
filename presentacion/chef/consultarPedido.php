@@ -37,7 +37,9 @@ include 'presentacion/chef/menuChef.php';
         echo "<td>" . $p-> getIdPedido() . "</td>";
         echo "<td>" . $p-> getReserva() . "</td>";
         echo "<td><div id=estado" . $p-> getIdPedido() . "><span class='fas " . ($p->getEstado() == 0 ? "fa-times-circle" : "fa-check-circle") . "'   id='Estado" . $p->getIdPedido() . "'  data-toggle='tooltip'  class='tooltipLink' data-placement='left' data-original-title='" . ($p->getEstado() == 0 ? "Inhabilitado" : "Habilitado") . "' ></span></div></td>";
-        echo "<td>" . " <a id='cambiarEstado" . $p->getIdPedido() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($p->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a> </td>";
+        echo "<td>" . " <a id='cambiarEstado" . $p->getIdPedido() . "' class='fas fa-power-off' href='#' data-toggle='tooltip' data-placement='left' title='" . ($p->getEstado() == 0 ? "Habilitar" : "Inhabilitar") . "'> </a>
+                        <a href='indexAjax.php?pid=". base64_encode("presentacion/modalPedido.php") . "&idPedido=" . $p->getIdPedido() . "' data-toggle='modal' data-target='#modalPedido' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>";
+        echo "</td>";
         echo "</tr>";
     }
     echo "<tr><td colspan='9'>" . count($pedidos) . " registros encontrados</td></tr>"?>	
@@ -72,4 +74,17 @@ $(document).ready(function(){
 	});
 	<?php } ?>
 });
+</script>
+
+<div class="modal fade" id="modalPedido" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" >
+		<div class="modal-content" id="modalContent">
+		</div>
+	</div>
+</div>
+<script>
+	$('body').on('show.bs.modal', '.modal', function (e) {
+		var link = $(e.relatedTarget);
+		$(this).find(".modal-content").load(link.attr("href"));
+	});
 </script>

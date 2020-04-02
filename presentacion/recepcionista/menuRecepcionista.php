@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand"
-		href="index.php?pid=<?php echo base64_encode("presentacion/sesionAdministrador.php")?>"><i
+		href="index.php?pid=<?php echo base64_encode("presentacion/recepcionista/sesionRecepcionista.php")?>"><i
 		class="fas fa-utensils"></i></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
